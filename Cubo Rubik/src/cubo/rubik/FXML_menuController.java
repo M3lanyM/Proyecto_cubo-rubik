@@ -23,7 +23,7 @@ public class FXML_menuController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
-        label.setText("Martin hijoe´mono");
+        label.setText("CUBO RUBIK");
     }
     
     @Override
