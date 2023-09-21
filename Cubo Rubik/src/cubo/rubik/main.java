@@ -18,7 +18,9 @@ public class main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML_menu.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = (Parent) loader.load(getClass().getClassLoader().getResourceAsStream(
+                "cubo/rubik/view/cubo.fxml"));
         
         Scene scene = new Scene(root);
         
