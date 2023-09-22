@@ -8,6 +8,6 @@ package model;
  *
  * @author Ashley Mendoza V
  */
-public class cuboPanel {
+public class Rotation {
     
 }
