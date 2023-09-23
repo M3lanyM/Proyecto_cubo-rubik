@@ -12,14 +12,14 @@ import javafx.scene.paint.Color;
  * @author Ashley Mendoza V
  */
 public class PaneCube extends GridPane {
-    public final Position positions;
+    public final PositionCube positions;
     private final Face[] faces;
     private Color color0, color1, color2, color3;
     private Face faceTemp;// para realizar la evaluacion de las caras sin afectar las originales
     public Face pane;
 
     public PaneCube() {
-        this.positions = new Position();
+        this.positions = new PositionCube();
         this.faces = new Face[6];
         faces[0] = new Face(Color.WHITE);
         faces[1] = new Face(Color.YELLOW);
