@@ -6,7 +6,10 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
@@ -15,6 +18,19 @@ import javafx.fxml.Initializable;
  */
 public class GameController implements Initializable {
 
+    @FXML
+    private Button btnYellow;
+    @FXML
+    private Button btnWhite;
+    @FXML
+    private Button btnBlue;
+    @FXML
+    private Button btnGreen;
+    @FXML
+    private Button btnRed;
+    @FXML
+    private Button btnOrange;
+
     /**
      * Initializes the controller class.
      */
@@ -22,5 +38,6 @@ public class GameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
     
 }
