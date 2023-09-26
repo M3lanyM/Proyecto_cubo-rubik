@@ -6,6 +6,10 @@
     -fx-background-image:url("../Images/Background.jpg");
     -fx-background-size: 100% 100%;
 }
+.Menu {
+    -fx-background-image:url("../Images/Menu.jpg");
+    -fx-background-size: 100% 100%;
+}
 
 .buttonR {
     -fx-background-color: white;
@@ -68,5 +72,16 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 12, 0, 0, 0);
 }
 .buttonExit:hover {
+    -fx-translate-y: -2px;
+}
+
+.btnMenu {
+    -fx-background-color: #f02424; 
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian,rgba(255, 255, 255, 0.4), 15, 0, 0, 0);
+}
+.btnMenu:hover {
     -fx-translate-y: -2px;
 }

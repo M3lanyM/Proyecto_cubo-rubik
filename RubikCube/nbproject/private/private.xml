@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Documentos/ESTRUCTURAS%20DE%20DATOS%20%232/Proyecto_cubo-rubik/RubikCube/src/model/PaneCube.java</file>
-=======
->>>>>>> Stashed changes
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto_cubo-rubik/RubikCube/src/view/game.fxml</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto_cubo-rubik/RubikCube/src/model/PositionCube.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto_cubo-rubik/RubikCube/src/model/PaneCube.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto_cubo-rubik/RubikCube/src/controller/GameController.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/Proyecto_cubo-rubik/RubikCube/src/model/Face.java</file>
-<<<<<<< Updated upstream
-=======
->>>>>>> 9482d74b76c8d66708d1fd5ba64e15788246323e
->>>>>>> Stashed changes
+            <file>file:/C:/Users/melan/OneDrive/Documentos/GitHub/Proyecto_cubo-rubik/RubikCube/src/css/cubo.css</file>
+            <file>file:/C:/Users/melan/OneDrive/Documentos/GitHub/Proyecto_cubo-rubik/RubikCube/src/Images/Background.jpg</file>
+            <file>file:/C:/Users/melan/OneDrive/Documentos/GitHub/Proyecto_cubo-rubik/RubikCube/src/controller/GameController.java</file>
         </group>
     </open-files>
 </project-private>
