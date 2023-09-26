@@ -3,8 +3,9 @@
  */
 
 .mainFxmlClass {
-    -fx-background-image:url("../Images/Background.jpg");
-    -fx-background-size: 100% 100%;
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , #F0F0F0, #BFEAF5 );
+
+
 }
 .Menu {
     -fx-background-image:url("../Images/Menu.jpg");
