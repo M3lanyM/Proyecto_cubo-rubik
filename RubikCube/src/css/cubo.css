@@ -3,5 +3,70 @@
  */
 
 .mainFxmlClass {
+    -fx-background-image:url("../Images/Background.jpg");
+    -fx-background-size: 100% 100%;
+}
 
+.buttonR {
+    -fx-background-color: white;
+    -fx-background-radius: 50%; 
+    -fx-border-radius: 49%; 
+    -fx-border-color: linear-gradient(to bottom, #FF6955,#CFF675,#43DBC4, #FDB94F); 
+    -fx-border-width: 2px; 
+    -fx-border-style: solid;
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 15, 0, 5, 5);
+}
+
+/* Estilo de hover */
+.buttonR:hover {
+    -fx-background-color: white;
+    -fx-translate-y: -2px;
+}
+
+.buttonFace {
+-fx-background-color: white;
+-fx-border-radius: 50px;
+-fx-border-width: 1px;
+-fx-background-radius:50px;
+}
+.buttonFace:hover {
+    -fx-translate-y: -2px;
+}
+
+.text{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: linear-gradient(to bottom, #FF6955,#CFF675,#43DBC4, #FDB94F); 
+}
+
+.buttonSave {
+    -fx-background-color: linear-gradient(to bottom, #43DBC4, #CFF675);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 12, 0, 0, 0);
+}
+.buttonSave:hover {
+    -fx-background-color: linear-gradient(to bottom, #CFF675, #43DBC4);
+}
+.buttonSolve {
+    -fx-background-color:linear-gradient(to bottom,  #ffcd33,#fc7a28); 
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 12, 0, 0, 0);
+}
+.buttonSolve:hover {
+    -fx-background-color: linear-gradient(to bottom, #fc7a28, #ffcd33);
+}
+
+.buttonExit {
+    -fx-background-color: #f02424; 
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 12, 0, 0, 0);
+}
+.buttonExit:hover {
+    -fx-translate-y: -2px;
 }
