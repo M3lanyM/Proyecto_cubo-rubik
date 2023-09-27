@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 
@@ -21,6 +20,18 @@ import javafx.scene.layout.StackPane;
  */
 public class GameController implements Initializable {
 
+    @FXML
+    private Button btnYellow;
+    @FXML
+    private Button btnWhite;
+    @FXML
+    private Button btnGreen;
+    @FXML
+    private Button btnBlue;
+    @FXML
+    private Button btnRed;
+    @FXML
+    private Button btnOrange;
     @FXML
     private RadioButton radioBtn1;
     @FXML
@@ -39,20 +50,6 @@ public class GameController implements Initializable {
     private StackPane faceCuboBackground;
     @FXML
     private Button mixBtn;
-    @FXML
-    private ToggleButton btnAmarillo;
-    @FXML
-    private ToggleGroup colorToggleGroup;
-    @FXML
-    private ToggleButton btnBlanco;
-    @FXML
-    private ToggleButton btnVerde;
-    @FXML
-    private ToggleButton btnAzul;
-    @FXML
-    private ToggleButton btnRojo;
-    @FXML
-    private ToggleButton btnNaranja;
 
 
     /**

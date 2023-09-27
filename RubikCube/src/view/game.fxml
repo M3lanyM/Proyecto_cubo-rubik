@@ -10,6 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane styleClass="mainFxmlClass" stylesheets="@../css/cubo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="546.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -77,79 +78,65 @@
                </VBox.margin>
             </VBox>
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <Button fx:id="btnYellow" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #FCC419;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/Icon_YellowFace.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnWhite" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #000000;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/Icon_WhiteFace.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnGreen" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #A3D930;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/Icon_GreenFace.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnBlue" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #339AF0;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/Icon_BlueFace.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnRed" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #F21B1B;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/Icon_RedFace.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnOrange" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #FF731B;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../Images/Icon_OrangeFace.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
                <VBox.margin>
                   <Insets top="22.0" />
                </VBox.margin>
-               <children>
-                  <ToolBar prefHeight="60.0" prefWidth="543.0" style="-fx-background-color: transparent;">
-                     <items>
-                        <HBox spacing="22.0">
-                           <children>
-                              <ToggleButton fx:id="btnAmarillo" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" selected="true" style="-fx-border-color: #FCC419;" styleClass="buttonFace" stylesheets="@../css/cubo.css">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="colorToggleGroup" />
-                                 </toggleGroup>
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../Images/Icon_YellowFace.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                              <ToggleButton fx:id="btnBlanco" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #000000;" styleClass="buttonFace" stylesheets="@../css/cubo.css" toggleGroup="$colorToggleGroup">
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../Images/Icon_WhiteFace.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                              <ToggleButton fx:id="btnVerde" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #A3D930;" styleClass="buttonFace" stylesheets="@../css/cubo.css" toggleGroup="$colorToggleGroup">
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../Images/Icon_GreenFace.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                              <ToggleButton fx:id="btnAzul" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #339AF0;" styleClass="buttonFace" stylesheets="@../css/cubo.css" toggleGroup="$colorToggleGroup">
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../Images/Icon_BlueFace.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                              <ToggleButton fx:id="btnRojo" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #F21B1B;" styleClass="buttonFace" stylesheets="@../css/cubo.css" toggleGroup="$colorToggleGroup">
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../Images/Icon_RedFace.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                              <ToggleButton fx:id="btnNaranja" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-border-color: #FF731B;" styleClass="buttonFace" stylesheets="@../css/cubo.css" toggleGroup="$colorToggleGroup">
-                                 <graphic>
-                                    <ImageView>
-                                       <image>
-                                          <Image url="@../Images/Icon_OrangeFace.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </ToggleButton>
-                           </children>
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                        </HBox>
-                     </items>
-                  </ToolBar>
-               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="243.0" prefWidth="546.0">
                <children>
