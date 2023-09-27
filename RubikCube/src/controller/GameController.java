@@ -50,6 +50,8 @@ public class GameController implements Initializable {
     private StackPane faceCuboBackground;
     @FXML
     private Button mixBtn;
+    @FXML
+    private Button btnSave;
 
 
     /**
