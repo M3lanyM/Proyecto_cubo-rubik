@@ -40,6 +40,7 @@ public class GameController implements Initializable {
     @FXML
     private Button mixBtn;
     @FXML
+<<<<<<< HEAD
     private ToggleButton btnAmarillo;
     @FXML
     private ToggleGroup colorToggleGroup;
@@ -53,6 +54,9 @@ public class GameController implements Initializable {
     private ToggleButton btnRojo;
     @FXML
     private ToggleButton btnNaranja;
+=======
+    private Button btnSave;
+>>>>>>> 10ae83f3554c7823c5c85995604a8655bfbd0346
 
 
     /**
