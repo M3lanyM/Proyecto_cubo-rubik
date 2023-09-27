@@ -37,7 +37,7 @@ public class PaneCube extends GridPane {
         
         yellowFace();
     }
-    //Carga las caras del cubo en la pantalla al inicar
+    
     public void whiteFace(){
         positions.setFront(faces[0]);
         positions.setBack(faces[1]);
