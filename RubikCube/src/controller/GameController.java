@@ -68,26 +68,26 @@ public class GameController implements Initializable {
     private Face face;
     private PaneCube paneCube;
     private PositionCube positionCube;
-     Face auxFace;
+    Face auxFace;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       initilizeFaceCube();
-       changeFaceCube();
+        initilizeFaceCube();
+        changeFaceCube();
     }
-    
-    public void initilizeFaceCube(){
+
+    public void initilizeFaceCube() {
         face = new Face(Color.YELLOW);
         paneCube = new PaneCube();
         positionCube = new PositionCube();
-        
+
         faceCuboBackground.getChildren().add(face);
     }
-    
-    public void changeFaceCube(){
-        colorToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-        @Override
-        public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+
+    public void changeFaceCube() {
+        colorToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if (newValue != null) {
                     if (newValue == btnWhite && oldValue != null) {
                         auxFace = paneCube.getFace(Color.WHITE);
@@ -98,7 +98,12 @@ public class GameController implements Initializable {
                             paneCube.organize(2, 0);
                         } else if (oldValue == btnGreen) {
                             paneCube.organize(3, 0);
-                        }  
+                        } else if (oldValue == btnOrange) {
+                            paneCube.organize(4, 0);
+                        } else if (oldValue == btnRed) {
+                            paneCube.organize(5, 0);
+                        }
+
                     } else if (newValue == btnYellow) {
                         auxFace = paneCube.getFace(Color.YELLOW);
                         paneCube.yellowFace();
@@ -108,7 +113,11 @@ public class GameController implements Initializable {
                             paneCube.organize(2, 1);
                         } else if (oldValue == btnGreen) {
                             paneCube.organize(3, 1);
-                        } 
+                        } else if (oldValue == btnOrange) {
+                            paneCube.organize(4, 1);
+                        } else if (oldValue == btnRed) {
+                            paneCube.organize(5, 1);
+                        }
 
                     } else if (newValue == btnBlue) {
                         auxFace = paneCube.getFace(Color.BLUE);
@@ -119,6 +128,10 @@ public class GameController implements Initializable {
                             paneCube.organize(1, 2);
                         } else if (oldValue == btnGreen) {
                             paneCube.organize(3, 2);
+                        } else if (oldValue == btnOrange) {
+                            paneCube.organize(4, 2);
+                        } else if (oldValue == btnRed) {
+                            paneCube.organize(5, 2);
                         }
 
                     } else if (newValue == btnGreen) {
@@ -130,16 +143,39 @@ public class GameController implements Initializable {
                             paneCube.organize(1, 3);
                         } else if (oldValue == btnBlue) {
                             paneCube.organize(2, 3);
+                        } else if (oldValue == btnOrange) {
+                            paneCube.organize(4, 3);
+                        } else if (oldValue == btnRed) {
+                            paneCube.organize(5, 3);
                         }
-                    } else {
-                        auxFace = paneCube.getFace(Color.WHITE);
-                        paneCube.whiteFace();
+
+                    } else if (newValue == btnOrange) {
+                        auxFace = paneCube.getFace(Color.ORANGE);
+                        paneCube.orangeFace();
                         if (oldValue == btnYellow) {
-                            paneCube.organize(1, 0);
+                            paneCube.organize(1, 4);
                         } else if (oldValue == btnBlue) {
-                            paneCube.organize(2, 0);
+                            paneCube.organize(2, 4);
                         } else if (oldValue == btnGreen) {
-                            paneCube.organize(3, 0);
+                            paneCube.organize(3, 4);
+                        } else if (oldValue == btnRed) {
+                            paneCube.organize(5, 4);
+                        } else if (oldValue == btnWhite) {
+                            paneCube.organize(0, 4);
+                        }
+                    } else if (newValue == btnRed) {
+                        auxFace = paneCube.getFace(Color.RED);
+                        paneCube.redFace();
+                        if (oldValue == btnYellow) {
+                            paneCube.organize(1, 5);
+                        } else if (oldValue == btnBlue) {
+                            paneCube.organize(2, 5);
+                        } else if (oldValue == btnGreen) {
+                            paneCube.organize(3, 5);
+                        } else if (oldValue == btnOrange) {
+                            paneCube.organize(4, 5);
+                        } else if (oldValue == btnWhite) {
+                            paneCube.organize(0, 5);
                         }
                     }
                     for (int i = 0; i < 3; i++) {
@@ -150,7 +186,11 @@ public class GameController implements Initializable {
 
                 }
             }
-        });   
+        });
+    }
+
+    public void reOrganize(int pre) {
+
     }
 
     @FXML
@@ -158,5 +198,4 @@ public class GameController implements Initializable {
         System.exit(0);
     }
 
-    
 }
