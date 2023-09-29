@@ -38,6 +38,11 @@ public class PaneCube extends GridPane {
 
         yellowFace();
     }
+    
+    public Face updateFace() {
+
+        return positions.getFront();
+    }
 
     //Carga las caras del cubo en la pantalla al inicar
     public void whiteFace() {
@@ -155,7 +160,7 @@ public class PaneCube extends GridPane {
             }
 ////////////////////////////////////////////////////////////////////////////////
         } else if (previous == 2) {//azul
-            if (current == 0) {//branco
+            if (current == 0) {//blanco
                 turnFaceAntiSchedule(positions.getTop());
                 turnFaceSchedule(positions.getBottom());
             } else if (current == 1) {//amarillo
@@ -175,7 +180,7 @@ public class PaneCube extends GridPane {
             }
 ////////////////////////////////////////////////////////////////////////////////
         } else if (previous == 3) {//verde
-            if (current == 0) {//branco
+            if (current == 0) {//blanco
                 turnFaceSchedule(positions.getTop());
                 turnFaceAntiSchedule(positions.getBottom());
             } else if (current == 1) {//blanco
@@ -399,9 +404,9 @@ public class PaneCube extends GridPane {
                 turnRightRow(0);
                 turnFaceAntiSchedule(positions.getTop());
             } else if (sides == 1) {
-                turnLeftRow(0);
-                turnLeftRow(2);
-                turnFaceSchedule(positions.getTop());
+                turnRightRow(0);
+                turnRightRow(2);
+                turnFaceAntiSchedule(positions.getTop());
                 turnFaceAntiSchedule(positions.getBottom());
             } else if (sides == 2) {
                 turnRightRow(2);
@@ -411,7 +416,7 @@ public class PaneCube extends GridPane {
         }
     }
 
-    public void edgesTopBottomt(int sides, int line) {
+    public void edgesTopBottom(int sides, int line) {
         if (line == 0) {
             if (sides == 3) {
                 turnTopColum(0, 2);
@@ -511,17 +516,17 @@ public class PaneCube extends GridPane {
                 edgesLeftRight(2, 2);
                 //-----------------
             } else if (number == 6) {
-                edgesTopBottomt(0, 0);
+                edgesTopBottom(0, 0);
             } else if (number == 7) {
-                edgesTopBottomt(0, 1);
+                edgesTopBottom(0, 1);
             } else if (number == 8) {
-                edgesTopBottomt(0, 2);
+                edgesTopBottom(0, 2);
             } else if (number == 9) {
-                edgesTopBottomt(2, 0);
+                edgesTopBottom(2, 0);
             } else if (number == 10) {
-                edgesTopBottomt(2, 1);
+                edgesTopBottom(2, 1);
             } else if (number == 11) {
-                edgesTopBottomt(2, 2);
+                edgesTopBottom(2, 2);
                 //----------
             } else if (number == 12) {
                 rotation(0);

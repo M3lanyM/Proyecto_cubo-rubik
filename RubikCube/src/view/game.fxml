@@ -169,9 +169,9 @@
                                  </toggleGroup>
                               </RadioButton>
                               <RadioButton fx:id="radioBtn2" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <RadioButton fx:id="radioBtn3" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <RadioButton fx:id="radioBtn4" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <RadioButton fx:id="radioBtn5" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <RadioButton fx:id="radioBtn4" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <RadioButton fx:id="radioBtn5" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <RadioButton fx:id="radioBtn3" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                               <RadioButton fx:id="radioBtn6" mnemonicParsing="false" toggleGroup="$rowColumnToggleGroup" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <StackPane fx:id="faceCuboBackground" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" />
@@ -216,8 +216,8 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css" />
+                  <Button fx:id="btnLeftBottom" mnemonicParsing="false" onAction="#moveLeftBottom" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css" />
+                  <Button fx:id="btnRightTop" mnemonicParsing="false" onAction="#moveRightTop" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css" />
                   <Button fx:id="btnMix" mnemonicParsing="false" prefHeight="52.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0">
