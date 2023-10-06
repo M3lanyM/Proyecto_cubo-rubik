@@ -246,9 +246,9 @@ public class PaneCube extends GridPane {
             color = (Color) positions.getFront().rectangles[i][row].getFill();
             positions.getFront().setColor((Color) positions.getRight().rectangles[i][row].getFill(), i, row);
             color2 = (Color) positions.getLeft().rectangles[i][row].getFill();
-            color3 = (Color) positions.getBottom().rectangles[i][row].getFill();
+            color3 = (Color) positions.getBack().rectangles[i][row].getFill();
             positions.getLeft().setColor((Color) color, i, row);
-            positions.getBottom().setColor((Color) color2, i, row);
+            positions.getBack().setColor((Color) color2, i, row);
             positions.getRight().setColor((Color) color3, i, row);
         }
     }
@@ -258,9 +258,9 @@ public class PaneCube extends GridPane {
             color = (Color) positions.getFront().rectangles[i][row].getFill();
             positions.getFront().setColor((Color) positions.getLeft().rectangles[i][row].getFill(), i, row);
             color2 = (Color) positions.getRight().rectangles[i][row].getFill();
-            color3 = (Color) positions.getBottom().rectangles[i][row].getFill();
+            color3 = (Color) positions.getBack().rectangles[i][row].getFill();
             positions.getRight().setColor((Color) color, i, row);
-            positions.getBottom().setColor((Color) color2, i, row);
+            positions.getBack().setColor((Color) color2, i, row);
             positions.getLeft().setColor((Color) color3, i, row);
         }
     }
@@ -278,6 +278,7 @@ public class PaneCube extends GridPane {
     }
 
     public void turnBottomColum(int row, int auxBack) {
+         System.out.println("BUeno1-1");
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[row][i].getFill();
             positions.getFront().setColor((Color) positions.getTop().rectangles[row][i].getFill(), row, i);
@@ -391,10 +392,10 @@ public class PaneCube extends GridPane {
                 turnFaceSchedule(positions.getTop());
             } else if (sides == 1) {
 
-                turnRightRow(0);
-                turnRightRow(2);
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
+                turnLeftRow(0);
+                turnLeftRow(2);
+                turnFaceAntiSchedule(positions.getBottom());
+                turnFaceSchedule(positions.getTop());
             } else if (sides == 2) {
                 turnLeftRow(2);
                 turnFaceAntiSchedule(positions.getBottom());
@@ -407,7 +408,7 @@ public class PaneCube extends GridPane {
                 turnRightRow(0);
                 turnRightRow(2);
                 turnFaceAntiSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getBottom());
+                turnFaceSchedule(positions.getBottom());
             } else if (sides == 2) {
                 turnRightRow(2);
                 turnFaceSchedule(positions.getBottom());
