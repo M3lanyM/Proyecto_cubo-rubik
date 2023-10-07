@@ -20,6 +20,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import model.Face;
@@ -66,8 +67,6 @@ public class GameController implements Initializable {
     @FXML
     private ToggleGroup colorToggleGroup;
     @FXML
-    private Button btnMix;
-    @FXML
     private Button btnLeftBottom;
     @FXML
     private Button btnRightTop;
@@ -77,7 +76,6 @@ public class GameController implements Initializable {
     private PositionCube positionCube;
     Face auxFace;
     private int sides;
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,7 +90,7 @@ public class GameController implements Initializable {
         positionCube = new PositionCube();
 
         faceCuboBackground.getChildren().add(face);
-        
+
     }
 
     public void changeFaceCube() {
@@ -201,7 +199,7 @@ public class GameController implements Initializable {
     }
 
     public void cuboMovement() {
-        
+
         rowColumnToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
@@ -213,7 +211,7 @@ public class GameController implements Initializable {
                         sides = 0;
                     } else if ((newValue == radioBtn2)) {
                         sides = 1;
-                    } else if((newValue == radioBtn3)){
+                    } else if ((newValue == radioBtn3)) {
                         sides = 2;
                     }
                 } else {
@@ -224,19 +222,16 @@ public class GameController implements Initializable {
                         sides = 3;
                     } else if ((newValue == radioBtn5)) {
                         sides = 4;
-                    } else if((newValue == radioBtn6)){
+                    } else if ((newValue == radioBtn6)) {
                         sides = 5;
                     }
                 }
 
-                //btnLeftBottom.setGraphic(new ImageView(icone1));
+               // btnLeftBottom.setGraphic(new ImageView(icone1));
                 //btnRightTop.setGraphic(new ImageView(icone2));
-                
-
             }
         });
     }
-
 
     @FXML
     private void exit(ActionEvent event) {
@@ -261,7 +256,7 @@ public class GameController implements Initializable {
 
     @FXML
     private void moveRightTop(ActionEvent event) {
-        System.out.println("Derecha:"+ sides);
+        System.out.println("Derecha:" + sides);
         if (sides <= 2) {
             paneCube.edgesLeftRight(sides, 1);
         } else {
@@ -274,4 +269,40 @@ public class GameController implements Initializable {
             }
         }
     }
+
+
+    @FXML
+    private void btnAntiSchedule(ActionEvent event) {
+        paneCube.rotation(0);
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    @FXML
+    private void btnSchedule(ActionEvent event) {
+        paneCube.rotation(1);
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    @FXML
+    private void btnMix(ActionEvent event) {
+        paneCube.mixCube();
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+
 }

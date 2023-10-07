@@ -198,7 +198,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" spacing="25.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
+                  <Button mnemonicParsing="false" onAction="#btnAntiSchedule" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -207,7 +207,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
+                  <Button mnemonicParsing="false" onAction="#btnSchedule" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -218,7 +218,7 @@
                   </Button>
                   <Button fx:id="btnLeftBottom" mnemonicParsing="false" onAction="#moveLeftBottom" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css" />
                   <Button fx:id="btnRightTop" mnemonicParsing="false" onAction="#moveRightTop" prefHeight="50.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css" />
-                  <Button fx:id="btnMix" mnemonicParsing="false" prefHeight="52.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
+                  <Button mnemonicParsing="false" onAction="#btnMix" prefHeight="52.0" prefWidth="50.0" styleClass="buttonR" stylesheets="@../css/cubo.css">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0">
                            <image>
