@@ -98,6 +98,11 @@ public class GameController implements Initializable {
         initilizeFaceCube();
         changeFaceCube();
         cuboMovement();
+
+        Image icone1 = new Image(getClass().getResourceAsStream("/Images/leftArrow.png"));
+        btnLeftBottom.setGraphic(new ImageView(icone1));
+        Image icone2 = new Image(getClass().getResourceAsStream("/Images/rightArrow.png"));
+        btnRightTop.setGraphic(new ImageView(icone2));
     }
 
     public void initilizeFaceCube() {
@@ -160,14 +165,13 @@ public class GameController implements Initializable {
     }
 
     public void cuboMovement() {
-
         rowColumnToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 Image icone1, icone2;
                 if (newValue == radioBtn1 || newValue == radioBtn2 || newValue == radioBtn3) {
-                    //icone1 = new Image(getClass().getResourceAsStream("images/rotate_left.png"));
-                    //icone2 = new Image(getClass().getResourceAsStream("images/rotate_right.png"));
+                    icone1 = new Image(getClass().getResourceAsStream("/Images/leftArrow.png"));
+                    icone2 = new Image(getClass().getResourceAsStream("/Images/rightArrow.png"));
                     if (newValue == radioBtn1) {
                         sides = 0;
                     } else if ((newValue == radioBtn2)) {
@@ -176,8 +180,8 @@ public class GameController implements Initializable {
                         sides = 2;
                     }
                 } else {
-                    //icone1 = new Image(getClass().getResourceAsStream("/images/rotate_right.png"));
-                    //icone2 = new Image(getClass().getResourceAsStream("/images/rotate_left.png"));
+                    icone1 = new Image(getClass().getResourceAsStream("/Images/upArrow.png"));
+                    icone2 = new Image(getClass().getResourceAsStream("/Images/downArrow.png"));
 
                     if (newValue == radioBtn4) {
                         sides = 3;
@@ -188,8 +192,8 @@ public class GameController implements Initializable {
                     }
                 }
 
-                // btnLeftBottom.setGraphic(new ImageView(icone1));
-                //btnRightTop.setGraphic(new ImageView(icone2));
+                btnLeftBottom.setGraphic(new ImageView(icone1));
+                btnRightTop.setGraphic(new ImageView(icone2));
             }
         });
     }
