@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 
 import javafx.scene.control.ToggleButton;
@@ -92,6 +93,8 @@ public class GameController implements Initializable {
     private PositionCube positionCube;
     Face auxFace;
     private int sides;
+    @FXML
+    private TextField playerName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,6 +113,9 @@ public class GameController implements Initializable {
         paneCube = new PaneCube();
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
+    }
+    public void setPlayerName(String name) {
+        playerName.setText(name);
     }
 
     public void changeFaceCube() {
