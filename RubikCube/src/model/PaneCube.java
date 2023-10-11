@@ -131,7 +131,7 @@ public class PaneCube extends GridPane {
             } else if (current == 3) {//verde
                 turnFaceAntiSchedule(positions.getTop());
                 turnFaceSchedule(positions.getBottom());
-            } else if (current == 4) {//anaranjado
+            } else if (current == 4) {//naranja
                 turnFaceAntiSchedule(positions.getRight());
                 turnFaceSchedule(positions.getLeft());
             } else if (current == 5) {//rojo
@@ -151,7 +151,7 @@ public class PaneCube extends GridPane {
             } else if (current == 3) {//verde
                 turnFaceSchedule(positions.getTop());
                 turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 4) {//anaranjado
+            } else if (current == 4) {//naranja
                 turnFaceAntiSchedule(positions.getRight());
                 turnFaceSchedule(positions.getLeft());
             } else if (current == 5) {//rojo
@@ -171,7 +171,7 @@ public class PaneCube extends GridPane {
                 turnFaceSchedule(positions.getTop());
                 turnFaceSchedule(positions.getBottom());
                 turnFaceSchedule(positions.getBottom());
-            } else if (current == 4) {//anaranjado
+            } else if (current == 4) {//naranja
                 turnFaceAntiSchedule(positions.getRight());
                 turnFaceSchedule(positions.getLeft());
             } else if (current == 5) {//rojo
@@ -191,7 +191,7 @@ public class PaneCube extends GridPane {
                 turnFaceSchedule(positions.getTop());
                 turnFaceSchedule(positions.getBottom());
                 turnFaceSchedule(positions.getBottom());
-            } else if (current == 4) {//anaranjado
+            } else if (current == 4) {//naranja
                 turnFaceAntiSchedule(positions.getRight());
                 turnFaceSchedule(positions.getLeft());
             } else if (current == 5) {//rojo
@@ -199,7 +199,7 @@ public class PaneCube extends GridPane {
                 turnFaceAntiSchedule(positions.getLeft());
             }
 ////////////////////////////////////////////////////////////////////////////////
-        } else if (previous == 4) {//anaranjado
+        } else if (previous == 4) {//naranja
             if (current == 0) {//blanco
                 turnFaceSchedule(positions.getLeft());
                 turnFaceAntiSchedule(positions.getRight());
@@ -229,7 +229,7 @@ public class PaneCube extends GridPane {
             } else if (current == 2) {//azul
                 turnFaceSchedule(positions.getTop());
                 turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 4) {//anaranjado
+            } else if (current == 4) {//naranja
                 turnFaceAntiSchedule(positions.getTop());
                 turnFaceAntiSchedule(positions.getTop());
                 turnFaceSchedule(positions.getBottom());
@@ -278,7 +278,6 @@ public class PaneCube extends GridPane {
     }
 
     public void turnBottomColum(int row, int auxBack) {
-        System.out.println("BUeno1-1");
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[row][i].getFill();
             positions.getFront().setColor((Color) positions.getTop().rectangles[row][i].getFill(), row, i);

@@ -272,10 +272,10 @@ public class GameController implements Initializable {
         Map<Color, String[]> colorMappings = new HashMap<>();
         colorMappings.put(Color.WHITE, new String[]{"Atras", "Frontal", "Izquierda", "Derecha", "Abajo", "Arriba"});
         colorMappings.put(Color.YELLOW, new String[]{"Frontal", "Atras", "Derecha", "Izquierda", "Abajo", "Arriba"});
-        colorMappings.put(Color.BLUE, new String[]{"Derecha", "Izquierda", "Frontal", "Atras", "Abajo", "Arriba"});
+        colorMappings.put(Color.BLUE, new String[]{"Derecha", "Izquierda", "Atras", "Frontal", "Abajo", "Arriba"});
         colorMappings.put(Color.GREEN, new String[]{"Izquierda", "Derecha", "Frontal", "Atras", "Abajo", "Arriba"});
-        colorMappings.put(Color.ORANGE, new String[]{"Abajo", "Arriba", "Frontal", "Atras", "Derecha", "Izquierda"});
-        colorMappings.put(Color.RED, new String[]{"Abajo", "Arriba", "Derecha", "Izquierda", "Frontal", "Atras"});
+        colorMappings.put(Color.ORANGE, new String[]{"Abajo", "Arriba", "Derecha", "Izquierda", "Atras", "Frontal"});
+        colorMappings.put(Color.RED, new String[]{"Abajo", "Arriba", "Izquierda", "Derecha", "Frontal", "Atras"});
 
         String[] labels = colorMappings.get(color);
         lab1.setText(labels[0]);
