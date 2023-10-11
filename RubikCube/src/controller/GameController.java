@@ -5,6 +5,9 @@
 package controller;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 
@@ -70,6 +74,18 @@ public class GameController implements Initializable {
     private Button btnLeftBottom;
     @FXML
     private Button btnRightTop;
+    @FXML
+    private Label lab1;
+    @FXML
+    private Label lab2;
+    @FXML
+    private Label lab3;
+    @FXML
+    private Label lab4;
+    @FXML
+    private Label lab5;
+    @FXML
+    private Label lab6;
 
     private Face face;
     private PaneCube paneCube;
@@ -88,111 +104,56 @@ public class GameController implements Initializable {
         face = new Face(Color.YELLOW);
         paneCube = new PaneCube();
         positionCube = new PositionCube();
-
         faceCuboBackground.getChildren().add(face);
-
     }
 
     public void changeFaceCube() {
-        colorToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if (newValue != null) {
-                    if (newValue == btnWhite && oldValue != null) {
-                        auxFace = paneCube.getFace(Color.WHITE);
-                        paneCube.whiteFace();
-                        if (oldValue == btnYellow) {
-                            paneCube.organize(1, 0);
-                        } else if (oldValue == btnBlue) {
-                            paneCube.organize(2, 0);
-                        } else if (oldValue == btnGreen) {
-                            paneCube.organize(3, 0);
-                        } else if (oldValue == btnOrange) {
-                            paneCube.organize(4, 0);
-                        } else if (oldValue == btnRed) {
-                            paneCube.organize(5, 0);
-                        }
+        Map<Toggle, Runnable> actionMap = new HashMap<>();
+        actionMap.put(btnWhite, () -> {
+            auxFace = paneCube.getFace(Color.WHITE);
+            paneCube.whiteFace();
+            textColorPosition(Color.WHITE);
+        });
+        actionMap.put(btnYellow, () -> {
+            auxFace = paneCube.getFace(Color.YELLOW);
+            paneCube.yellowFace();
+            textColorPosition(Color.YELLOW);
+        });
+        actionMap.put(btnBlue, () -> {
+            auxFace = paneCube.getFace(Color.BLUE);
+            paneCube.blueFace();
+            textColorPosition(Color.BLUE);
+        });
+        actionMap.put(btnGreen, () -> {
+            auxFace = paneCube.getFace(Color.GREEN);
+            paneCube.greenFace();
+            textColorPosition(Color.GREEN);
+        });
+        actionMap.put(btnOrange, () -> {
+            auxFace = paneCube.getFace(Color.ORANGE);
+            paneCube.orangeFace();
+            textColorPosition(Color.ORANGE);
+        });
+        actionMap.put(btnRed, () -> {
+            auxFace = paneCube.getFace(Color.RED);
+            paneCube.redFace();
+            textColorPosition(Color.RED);
+        });
 
-                    } else if (newValue == btnYellow) {
-                        auxFace = paneCube.getFace(Color.YELLOW);
-                        paneCube.yellowFace();
-                        if (oldValue == btnWhite) {
-                            paneCube.organize(0, 1);
-                        } else if (oldValue == btnBlue) {
-                            paneCube.organize(2, 1);
-                        } else if (oldValue == btnGreen) {
-                            paneCube.organize(3, 1);
-                        } else if (oldValue == btnOrange) {
-                            paneCube.organize(4, 1);
-                        } else if (oldValue == btnRed) {
-                            paneCube.organize(5, 1);
-                        }
+        colorToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Runnable action = actionMap.get(newValue);
+                if (action != null) {
+                    action.run();
+                    int oldIndex = Arrays.asList(btnWhite, btnYellow, btnBlue, btnGreen, btnOrange, btnRed).indexOf(oldValue);
+                    int newIndex = Arrays.asList(btnWhite, btnYellow, btnBlue, btnGreen, btnOrange, btnRed).indexOf(newValue);
+                    paneCube.organize(oldIndex, newIndex);
 
-                    } else if (newValue == btnBlue) {
-                        auxFace = paneCube.getFace(Color.BLUE);
-                        paneCube.blueFace();
-                        if (oldValue == btnWhite) {
-                            paneCube.organize(0, 2);
-                        } else if (oldValue == btnYellow) {
-                            paneCube.organize(1, 2);
-                        } else if (oldValue == btnGreen) {
-                            paneCube.organize(3, 2);
-                        } else if (oldValue == btnOrange) {
-                            paneCube.organize(4, 2);
-                        } else if (oldValue == btnRed) {
-                            paneCube.organize(5, 2);
-                        }
-
-                    } else if (newValue == btnGreen) {
-                        auxFace = paneCube.getFace(Color.GREEN);
-                        paneCube.greenFace();
-                        if (oldValue == btnWhite) {
-                            paneCube.organize(0, 3);
-                        } else if (oldValue == btnYellow) {
-                            paneCube.organize(1, 3);
-                        } else if (oldValue == btnBlue) {
-                            paneCube.organize(2, 3);
-                        } else if (oldValue == btnOrange) {
-                            paneCube.organize(4, 3);
-                        } else if (oldValue == btnRed) {
-                            paneCube.organize(5, 3);
-                        }
-
-                    } else if (newValue == btnOrange) {
-                        auxFace = paneCube.getFace(Color.ORANGE);
-                        paneCube.orangeFace();
-                        if (oldValue == btnYellow) {
-                            paneCube.organize(1, 4);
-                        } else if (oldValue == btnBlue) {
-                            paneCube.organize(2, 4);
-                        } else if (oldValue == btnGreen) {
-                            paneCube.organize(3, 4);
-                        } else if (oldValue == btnRed) {
-                            paneCube.organize(5, 4);
-                        } else if (oldValue == btnWhite) {
-                            paneCube.organize(0, 4);
-                        }
-                    } else if (newValue == btnRed) {
-                        auxFace = paneCube.getFace(Color.RED);
-                        paneCube.redFace();
-                        if (oldValue == btnYellow) {
-                            paneCube.organize(1, 5);
-                        } else if (oldValue == btnBlue) {
-                            paneCube.organize(2, 5);
-                        } else if (oldValue == btnGreen) {
-                            paneCube.organize(3, 5);
-                        } else if (oldValue == btnOrange) {
-                            paneCube.organize(4, 5);
-                        } else if (oldValue == btnWhite) {
-                            paneCube.organize(0, 5);
-                        }
-                    }
                     for (int i = 0; i < 3; i++) {
                         for (int j = 0; j < 3; j++) {
                             face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
                         }
                     }
-
                 }
             }
         });
@@ -227,7 +188,7 @@ public class GameController implements Initializable {
                     }
                 }
 
-               // btnLeftBottom.setGraphic(new ImageView(icone1));
+                // btnLeftBottom.setGraphic(new ImageView(icone1));
                 //btnRightTop.setGraphic(new ImageView(icone2));
             }
         });
@@ -270,7 +231,6 @@ public class GameController implements Initializable {
         }
     }
 
-
     @FXML
     private void btnAntiSchedule(ActionEvent event) {
         paneCube.rotation(0);
@@ -304,5 +264,21 @@ public class GameController implements Initializable {
         }
     }
 
+    void textColorPosition(Color color) {
+        Map<Color, String[]> colorMappings = new HashMap<>();
+        colorMappings.put(Color.WHITE, new String[]{"Atras", "Frontal", "Izquierda", "Derecha", "Abajo", "Arriba"});
+        colorMappings.put(Color.YELLOW, new String[]{"Frontal", "Atras", "Derecha", "Izquierda", "Abajo", "Arriba"});
+        colorMappings.put(Color.BLUE, new String[]{"Derecha", "Izquierda", "Frontal", "Atras", "Abajo", "Arriba"});
+        colorMappings.put(Color.GREEN, new String[]{"Izquierda", "Derecha", "Frontal", "Atras", "Abajo", "Arriba"});
+        colorMappings.put(Color.ORANGE, new String[]{"Abajo", "Arriba", "Frontal", "Atras", "Derecha", "Izquierda"});
+        colorMappings.put(Color.RED, new String[]{"Abajo", "Arriba", "Derecha", "Izquierda", "Frontal", "Atras"});
 
+        String[] labels = colorMappings.get(color);
+        lab1.setText(labels[0]);
+        lab2.setText(labels[1]);
+        lab3.setText(labels[2]);
+        lab4.setText(labels[3]);
+        lab5.setText(labels[4]);
+        lab6.setText(labels[5]);
+    }
 }
