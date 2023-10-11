@@ -4,9 +4,15 @@
  */
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -95,7 +101,11 @@ public class GameController implements Initializable {
     private int sides;
     @FXML
     private TextField playerName;
-
+    @FXML
+    private TextField numberMoves;
+    private int movementCount = 0;
+    private List<String> gameMoves = new ArrayList<>();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initilizeFaceCube();
@@ -165,6 +175,9 @@ public class GameController implements Initializable {
                             face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
                         }
                     }
+                    gameMoves.add("Caras:"+oldIndex+ ","+ newIndex);
+                    movementCount++;
+                    numberMoves.setText(Integer.toString(movementCount));
                 }
             }
         });
@@ -214,8 +227,10 @@ public class GameController implements Initializable {
         System.out.println(sides);
         if (sides <= 2) {
             paneCube.edgesLeftRight(sides, 0);
+            gameMoves.add("izquierda:"+sides);
         } else {
             paneCube.edgesTopBottom(sides, 0);
+            gameMoves.add("abajo:"+sides);
         }
         auxFace = paneCube.updateFace();
         for (int i = 0; i < 3; i++) {
@@ -223,6 +238,8 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        movementCount++;
+        numberMoves.setText(Integer.toString(movementCount));
     }
 
     @FXML
@@ -230,8 +247,10 @@ public class GameController implements Initializable {
         System.out.println("Derecha:" + sides);
         if (sides <= 2) {
             paneCube.edgesLeftRight(sides, 1);
+            gameMoves.add("derecha:"+sides);
         } else {
             paneCube.edgesTopBottom(sides, 1);
+            gameMoves.add("arriba:"+sides);
         }
         auxFace = paneCube.updateFace();
         for (int i = 0; i < 3; i++) {
@@ -239,6 +258,8 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        movementCount++;
+        numberMoves.setText(Integer.toString(movementCount));
     }
 
     @FXML
@@ -250,6 +271,8 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        movementCount++;
+        numberMoves.setText(Integer.toString(movementCount));
     }
 
     @FXML
@@ -261,6 +284,8 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        movementCount++;
+        numberMoves.setText(Integer.toString(movementCount));
     }
 
     @FXML
@@ -272,6 +297,8 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        movementCount++;
+        numberMoves.setText(Integer.toString(movementCount));
     }
 
     void textColorPosition(Color color) {
@@ -290,5 +317,41 @@ public class GameController implements Initializable {
         lab4.setText(labels[3]);
         lab5.setText(labels[4]);
         lab6.setText(labels[5]);
+    }
+
+    @FXML
+    private void saveGame(ActionEvent event) {
+          try {
+        String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
+
+        String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\"+playerName.getText()+".txt"; // Ruta y nombre del archivo personalizado
+        File file = new File(filePath);
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+        // Guarda el nombre del jugador y el número de movimientos al principio del archivo
+        bufferedWriter.write("Nombre del Jugador: " + playerNameValue);
+        bufferedWriter.newLine(); // Agrega una nueva línea después del nombre del jugador
+        bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
+        bufferedWriter.newLine(); // Agrega una nueva línea después del número de movimientos
+
+        // Recorre la lista de movimientos y escribe cada movimiento en el archivo
+        for (String movimiento : gameMoves) {
+            bufferedWriter.write(movimiento);
+            bufferedWriter.newLine(); // Agrega una nueva línea después de cada movimiento
+        }
+
+        bufferedWriter.close(); // Cierra el archivo
+
+        // Puedes mostrar un mensaje de éxito o realizar otras acciones después de guardar los movimientos
+        System.out.println("Información y movimientos guardados en " + filePath);
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Manejo de errores en caso de que no se pueda guardar el archivo
+    }
+    }
+
+    @FXML
+    private void cubeSolve(ActionEvent event) {
     }
 }

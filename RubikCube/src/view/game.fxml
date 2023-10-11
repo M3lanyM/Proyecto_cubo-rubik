@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -19,13 +25,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="mainFxmlClass" stylesheets="@../css/cubo.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+<AnchorPane styleClass="mainFxmlClass" stylesheets="@../css/cubo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="546.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="57.0" prefWidth="546.0">
                <children>
-                  <Button fx:id="btnSave" alignment="CENTER" graphicTextGap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="110.0" styleClass="buttonSave" stylesheets="@../css/cubo.css" text="Guardar" textFill="WHITE">
+                  <Button fx:id="btnSave" alignment="CENTER" graphicTextGap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveGame" prefHeight="39.0" prefWidth="110.0" styleClass="buttonSave" stylesheets="@../css/cubo.css" text="Guardar" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="15.0" />
                      </font>
@@ -40,7 +46,7 @@
                         <Insets left="30.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="122.0" styleClass="buttonSolve" stylesheets="@../css/cubo.css" text="Resolver" textFill="WHITE">
+                  <Button alignment="TOP_LEFT" graphicTextGap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cubeSolve" prefHeight="39.0" prefWidth="122.0" styleClass="buttonSolve" stylesheets="@../css/cubo.css" text="Resolver" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="15.0" />
                      </font>
@@ -252,7 +258,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="53.0" styleClass="text" stylesheets="@../css/cubo.css" />
+                  <TextField fx:id="numberMoves" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="53.0" styleClass="text" stylesheets="@../css/cubo.css" />
                </children>
                <VBox.margin>
                   <Insets top="4.0" />
