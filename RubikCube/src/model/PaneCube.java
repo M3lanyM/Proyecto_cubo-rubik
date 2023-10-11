@@ -481,59 +481,7 @@ public class PaneCube extends GridPane {
     }
 
     public void mixCube() {
-        //Se debe de agregar una lista para guardar los movimientos creados
-        System.out.println("Mezclado");
-        Random generator = new Random();
-        for (int i = 0; i < 100; i++) {
-            int number = generator.nextInt(5);
-
-            if (number == 0) {
-                whiteFace();
-            } else if (number == 1) {
-                yellowFace();
-            } else if (number == 2) {
-                blueFace();
-            } else if (number == 3) {
-                greenFace();
-            } else if (number == 4) {
-                orangeFace();
-            } else if (number == 5) {
-                redFace();
-            }
-
-            number = generator.nextInt(14);
-            if (number == 0) {
-                edgesLeftRight(0, 0);
-            } else if (number == 1) {
-                edgesLeftRight(0, 1);
-            } else if (number == 2) {
-                edgesLeftRight(0, 2);
-            } else if (number == 3) {
-                edgesLeftRight(2, 0);
-            } else if (number == 4) {
-                edgesLeftRight(2, 1);
-            } else if (number == 5) {
-                edgesLeftRight(2, 2);
-                //-----------------
-            } else if (number == 6) {
-                edgesTopBottom(0, 0);
-            } else if (number == 7) {
-                edgesTopBottom(0, 1);
-            } else if (number == 8) {
-                edgesTopBottom(0, 2);
-            } else if (number == 9) {
-                edgesTopBottom(2, 0);
-            } else if (number == 10) {
-                edgesTopBottom(2, 1);
-            } else if (number == 11) {
-                edgesTopBottom(2, 2);
-                //----------
-            } else if (number == 12) {
-                rotation(0);
-            } else if (number == 13) {
-                rotation(1);
-            }
-        }
+        
     }
 
 }

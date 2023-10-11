@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -105,7 +106,7 @@ public class GameController implements Initializable {
     private TextField numberMoves;
     private int movementCount = 0;
     private List<String> gameMoves = new ArrayList<>();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initilizeFaceCube();
@@ -124,6 +125,7 @@ public class GameController implements Initializable {
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
     }
+
     public void setPlayerName(String name) {
         playerName.setText(name);
     }
@@ -175,7 +177,7 @@ public class GameController implements Initializable {
                             face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
                         }
                     }
-                    gameMoves.add("Caras:"+oldIndex+ ","+ newIndex);
+                    gameMoves.add("Caras:" + oldIndex + "," + newIndex);
                     movementCount++;
                     numberMoves.setText(Integer.toString(movementCount));
                 }
@@ -227,10 +229,10 @@ public class GameController implements Initializable {
         System.out.println(sides);
         if (sides <= 2) {
             paneCube.edgesLeftRight(sides, 0);
-            gameMoves.add("izquierda:"+sides);
+            gameMoves.add("izquierda:" + sides);
         } else {
             paneCube.edgesTopBottom(sides, 0);
-            gameMoves.add("abajo:"+sides);
+            gameMoves.add("abajo:" + sides);
         }
         auxFace = paneCube.updateFace();
         for (int i = 0; i < 3; i++) {
@@ -247,10 +249,10 @@ public class GameController implements Initializable {
         System.out.println("Derecha:" + sides);
         if (sides <= 2) {
             paneCube.edgesLeftRight(sides, 1);
-            gameMoves.add("derecha:"+sides);
+            gameMoves.add("derecha:" + sides);
         } else {
             paneCube.edgesTopBottom(sides, 1);
-            gameMoves.add("arriba:"+sides);
+            gameMoves.add("arriba:" + sides);
         }
         auxFace = paneCube.updateFace();
         for (int i = 0; i < 3; i++) {
@@ -290,7 +292,80 @@ public class GameController implements Initializable {
 
     @FXML
     private void btnMix(ActionEvent event) {
-        paneCube.mixCube();
+        //Se debe de agregar una lista para guardar los movimientos creados
+        System.out.println("Mezclado");
+        Random generator = new Random();
+        for (int i = 0; i < 100; i++) {
+            int number = generator.nextInt(5);
+            int aux = number;
+                    
+            if (number == 0) {
+                paneCube.whiteFace();
+                gameMoves.add("mixCara: 0");
+            } else if (number == 1) {
+                paneCube.yellowFace();
+                gameMoves.add("mixCara: 1");
+            } else if (number == 2) {
+                paneCube.blueFace();
+                gameMoves.add("mixCara: 2");
+            } else if (number == 3) {
+                paneCube.greenFace();
+                gameMoves.add("mixCara: 3");
+            } else if (number == 4) {
+                paneCube.orangeFace();
+                gameMoves.add("mixCara: 4");
+            } else if (number == 5) {
+                paneCube.redFace();
+                gameMoves.add("mixCara: 5");
+            }
+
+            number = generator.nextInt(14);
+            if (number == 0) {
+                paneCube.edgesLeftRight(0, 0);
+                gameMoves.add("izquierda:"+ 0);
+            } else if (number == 1) {
+                paneCube.edgesLeftRight(0, 1);
+                gameMoves.add("izquierda:"+ 1);
+            } else if (number == 2) {
+                paneCube.edgesLeftRight(0, 2);
+                gameMoves.add("izquierda:"+ 2);
+            } else if (number == 3) {
+                paneCube.edgesLeftRight(2, 0);
+                gameMoves.add("derecha:"+ 0);
+            } else if (number == 4) {
+                paneCube.edgesLeftRight(2, 1);
+                gameMoves.add("derecha:"+ 1);
+            } else if (number == 5) {
+                paneCube.edgesLeftRight(2, 2);
+                gameMoves.add("derecha:"+ 2);
+                //-----------------
+            } else if (number == 6) {
+                paneCube.edgesTopBottom(0, 0);
+                gameMoves.add("arriba:"+ 0);
+            } else if (number == 7) {
+                paneCube.edgesTopBottom(0, 1);
+                gameMoves.add("arriba:"+ 1);
+            } else if (number == 8) {
+                paneCube.edgesTopBottom(0, 2);
+                gameMoves.add("arriba:"+ 2);
+            } else if (number == 9) {
+                paneCube.edgesTopBottom(2, 0);
+                gameMoves.add("abajo:"+ 0);
+            } else if (number == 10) {
+                paneCube.edgesTopBottom(2, 1);
+                gameMoves.add("abajo:"+ 1);
+            } else if (number == 11) {
+                paneCube.edgesTopBottom(2, 2);
+                gameMoves.add("abajo:"+ 2);
+                //----------
+            } else if (number == 12) {
+                paneCube.rotation(0);
+                gameMoves.add("rotar:"+ 0);
+            } else if (number == 13) {
+                paneCube.rotation(1);
+                gameMoves.add("rotar:"+ 1);
+            }
+        }
         auxFace = paneCube.updateFace();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -321,34 +396,34 @@ public class GameController implements Initializable {
 
     @FXML
     private void saveGame(ActionEvent event) {
-          try {
-        String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
+        try {
+            String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
 
-        String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\"+playerName.getText()+".txt"; // Ruta y nombre del archivo personalizado
-        File file = new File(filePath);
-        FileWriter writer = new FileWriter(file);
-        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
+            File file = new File(filePath);
+            FileWriter writer = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
-        // Guarda el nombre del jugador y el número de movimientos al principio del archivo
-        bufferedWriter.write("Nombre del Jugador: " + playerNameValue);
-        bufferedWriter.newLine(); // Agrega una nueva línea después del nombre del jugador
-        bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
-        bufferedWriter.newLine(); // Agrega una nueva línea después del número de movimientos
+            // Guarda el nombre del jugador y el número de movimientos al principio del archivo
+            bufferedWriter.write("Nombre del Jugador: " + playerNameValue);
+            bufferedWriter.newLine(); // Agrega una nueva línea después del nombre del jugador
+            bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
+            bufferedWriter.newLine(); // Agrega una nueva línea después del número de movimientos
 
-        // Recorre la lista de movimientos y escribe cada movimiento en el archivo
-        for (String movimiento : gameMoves) {
-            bufferedWriter.write(movimiento);
-            bufferedWriter.newLine(); // Agrega una nueva línea después de cada movimiento
+            // Recorre la lista de movimientos y escribe cada movimiento en el archivo
+            for (String movimiento : gameMoves) {
+                bufferedWriter.write(movimiento);
+                bufferedWriter.newLine(); // Agrega una nueva línea después de cada movimiento
+            }
+
+            bufferedWriter.close(); // Cierra el archivo
+
+            // Puedes mostrar un mensaje de éxito o realizar otras acciones después de guardar los movimientos
+            System.out.println("Información y movimientos guardados en " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejo de errores en caso de que no se pueda guardar el archivo
         }
-
-        bufferedWriter.close(); // Cierra el archivo
-
-        // Puedes mostrar un mensaje de éxito o realizar otras acciones después de guardar los movimientos
-        System.out.println("Información y movimientos guardados en " + filePath);
-    } catch (IOException e) {
-        e.printStackTrace();
-        // Manejo de errores en caso de que no se pueda guardar el archivo
-    }
     }
 
     @FXML
