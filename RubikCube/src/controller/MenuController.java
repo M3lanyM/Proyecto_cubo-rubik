@@ -110,6 +110,9 @@ public class MenuController implements Initializable {
                     gameController.setPlayerName(playerName);
                     gameController.loadGameMovesFromFile(filePath); // Cargar los movimientos desde el archivo
                     gameController.continueCubeSolve(); // Aplicar los movimientos guardados
+        
+                    // numero de movimientos
+                    gameController.setMovementCount(gameController.getGameMoves().size()- 1);
 
                     // Cargar el tiempo de la partida y actualizar el cronómetro
                     gameController.loadGameTimeFromFile(filePath);
@@ -121,7 +124,7 @@ public class MenuController implements Initializable {
                     stage.setTitle("Juego del Cubo Rubik");
                     stage.setScene(new Scene(root));
                     stage.show();
-
+                    
                     Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     menuStage.close();
                 } catch (IOException e) {

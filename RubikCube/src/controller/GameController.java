@@ -115,7 +115,7 @@ public class GameController implements Initializable {
     Face auxFace;
     private int sides;
 
-    private int movementCount = 0;
+    int movementCount = 0;
     private List<String> gameMoves = new ArrayList<>();
     int firtsList = 0;
     int endList;
@@ -127,6 +127,10 @@ public class GameController implements Initializable {
     private int seconds = 0;
     private int minutes = 0;
     private Timeline timeline;
+
+    public List<String> getGameMoves() {
+        return gameMoves;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -146,7 +150,7 @@ public class GameController implements Initializable {
         paneCube = new PaneCube();
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
-        gameMoves.add("Caras:" + 1);
+       gameMoves.add("Caras:" + 1);
         textColorPosition(Color.YELLOW);
     }
 
@@ -165,6 +169,11 @@ public class GameController implements Initializable {
         }
         String formattedTime = String.format("%02d:%02d", minutes, seconds);
         gameTime.setText(formattedTime);
+    }
+
+    public void setMovementCount(int movementCount) {
+        this.movementCount = movementCount;
+        numberMoves.setText(Integer.toString(movementCount));
     }
 
     public void setPlayerName(String name) {
@@ -257,10 +266,6 @@ public class GameController implements Initializable {
                 btnRightTop.setGraphic(new ImageView(icone2));
             }
         });
-    }
-
-    private void exit(ActionEvent event) {
-        System.exit(0);
     }
 
     @FXML
@@ -425,7 +430,7 @@ public class GameController implements Initializable {
             String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
             File file = new File(filePath);
             FileWriter writer = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            BufferedWriter bufferedWriter =  new BufferedWriter(writer);
             bufferedWriter.write("Nombre del Jugador: " + playerNameValue);
             bufferedWriter.newLine();
             bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
