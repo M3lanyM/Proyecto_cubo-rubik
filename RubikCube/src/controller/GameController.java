@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -42,6 +44,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Face;
 import model.PaneCube;
 import model.PositionCube;
@@ -111,11 +114,15 @@ public class GameController implements Initializable {
     private PositionCube positionCube;
     Face auxFace;
     private int sides;
+    
     private int movementCount = 0;
     private List<String> gameMoves = new ArrayList<>();
     int firtsList = 0;
     int endList;
 
+
+    @FXML
+    private TextField gameTime;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -307,7 +314,7 @@ public class GameController implements Initializable {
         for (int i = 0; i < 100; i++) {
             int number = generator.nextInt(5);
             int aux = number;
-                    
+
             if (number == 0) {
                 paneCube.whiteFace();
                 gameMoves.add("mixCara: 0");
@@ -331,48 +338,48 @@ public class GameController implements Initializable {
             number = generator.nextInt(14);
             if (number == 0) {
                 paneCube.edgesLeftRight(0, 0);
-                gameMoves.add("izquierda:"+ 0);
+                gameMoves.add("izquierda:" + 0);
             } else if (number == 1) {
                 paneCube.edgesLeftRight(0, 1);
-                gameMoves.add("izquierda:"+ 1);
+                gameMoves.add("izquierda:" + 1);
             } else if (number == 2) {
                 paneCube.edgesLeftRight(0, 2);
-                gameMoves.add("izquierda:"+ 2);
+                gameMoves.add("izquierda:" + 2);
             } else if (number == 3) {
                 paneCube.edgesLeftRight(2, 0);
-                gameMoves.add("derecha:"+ 0);
+                gameMoves.add("derecha:" + 0);
             } else if (number == 4) {
                 paneCube.edgesLeftRight(2, 1);
-                gameMoves.add("derecha:"+ 1);
+                gameMoves.add("derecha:" + 1);
             } else if (number == 5) {
                 paneCube.edgesLeftRight(2, 2);
-                gameMoves.add("derecha:"+ 2);
+                gameMoves.add("derecha:" + 2);
                 //-----------------
             } else if (number == 6) {
                 paneCube.edgesTopBottom(0, 0);
-                gameMoves.add("arriba:"+ 0);
+                gameMoves.add("arriba:" + 0);
             } else if (number == 7) {
                 paneCube.edgesTopBottom(0, 1);
-                gameMoves.add("arriba:"+ 1);
+                gameMoves.add("arriba:" + 1);
             } else if (number == 8) {
                 paneCube.edgesTopBottom(0, 2);
-                gameMoves.add("arriba:"+ 2);
+                gameMoves.add("arriba:" + 2);
             } else if (number == 9) {
                 paneCube.edgesTopBottom(2, 0);
-                gameMoves.add("abajo:"+ 0);
+                gameMoves.add("abajo:" + 0);
             } else if (number == 10) {
                 paneCube.edgesTopBottom(2, 1);
-                gameMoves.add("abajo:"+ 1);
+                gameMoves.add("abajo:" + 1);
             } else if (number == 11) {
                 paneCube.edgesTopBottom(2, 2);
-                gameMoves.add("abajo:"+ 2);
+                gameMoves.add("abajo:" + 2);
                 //----------
             } else if (number == 12) {
                 paneCube.rotation(0);
-                gameMoves.add("rotar:"+ 0);
+                gameMoves.add("rotar:" + 0);
             } else if (number == 13) {
                 paneCube.rotation(1);
-                gameMoves.add("rotar:"+ 1);
+                gameMoves.add("rotar:" + 1);
             }
         }
         auxFace = paneCube.updateFace();
@@ -600,4 +607,5 @@ public class GameController implements Initializable {
         }
         
     }
+
 }

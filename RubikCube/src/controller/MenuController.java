@@ -33,7 +33,7 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void startGame(ActionEvent event) {
@@ -63,8 +63,11 @@ public class MenuController implements Initializable {
                 stage.setTitle("Juego del Cubo Rubik");
                 stage.setScene(new Scene(root));
                 stage.show();
-                Stage gameStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                gameStage.close();
+
+                //cerrar el menu
+                Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                menuStage.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -97,5 +100,5 @@ public class MenuController implements Initializable {
 
         alert.showAndWait();
     }
-    
+
 }
