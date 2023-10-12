@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 
 /**
  *
- * @author Ashley Mendoza V
+ * @author amendoza, mmendoza, mjimenez, khernandez, jcastro
  */
 public class PaneCube extends GridPane {
 

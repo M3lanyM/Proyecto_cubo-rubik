@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author marti
+ * @author amendoza, mmendoza, mjimenez, khernandez, jcastro
  */
 public class MenuController implements Initializable {
 
@@ -52,11 +52,10 @@ public class MenuController implements Initializable {
 
         Optional<String> result = dialog.showAndWait();
 
-        if (result.isPresent() && !result.get().isEmpty()) { // Verificar si se ingresó un nombre no vacío
+        if (result.isPresent() && !result.get().isEmpty()) { 
             String playerName = result.get();
 
             try {
-                // Cargar la vista del cubo desde su archivo FXML
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game.fxml"));
                 Parent root = loader.load();
 
@@ -69,13 +68,11 @@ public class MenuController implements Initializable {
                 // Inicia el cronómetro
                 gameController.startTimer();
 
-                // Mostrar la vista del cubo en una nueva ventana
                 Stage stage = new Stage();
                 stage.setTitle("Juego del Cubo Rubik");
                 stage.setScene(new Scene(root));
                 stage.show();
 
-                //cerrar el menu
                 Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 menuStage.close();
 
@@ -118,6 +115,7 @@ public class MenuController implements Initializable {
                     gameController.loadGameMovesFromFile(filePath); // Cargar los movimientos desde el archivo
                     gameController.continueCubeSolve(); // Aplicar los movimientos guardados
 
+                    
                     // numero de movimientos
                     gameController.setMovementCount(gameController.getGameMoves().size() - 1);
 

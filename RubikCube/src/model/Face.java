@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  *
- * @author Ashley Mendoza V
+ * @author amendoza, mmendoza, mjimenez, khernandez, jcastro
  */
 public class Face extends GridPane{
     private final Color color;

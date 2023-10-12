@@ -52,7 +52,7 @@ import model.PositionCube;
 /**
  * FXML Controller class
  *
- * @author marti
+ * @author amendoza, mmendoza, mjimenez, khernandez, jcastro
  */
 public class GameController implements Initializable {
 
@@ -150,7 +150,7 @@ public class GameController implements Initializable {
         paneCube = new PaneCube();
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
-       gameMoves.add("Caras:" + 1);
+        gameMoves.add("Caras:" + 1);
         textColorPosition(Color.YELLOW);
     }
 
@@ -403,7 +403,6 @@ public class GameController implements Initializable {
         numberMoves.setText(Integer.toString(movementCount));
     }
 //Pone los textos de posiciones
-
     void textColorPosition(Color color) {
         Map<Color, String[]> colorMappings = new HashMap<>();
         colorMappings.put(Color.WHITE, new String[]{"Atras", "Frontal", "Izquierda", "Derecha", "Abajo", "Arriba"});
@@ -421,13 +420,13 @@ public class GameController implements Initializable {
         lab5.setText(labels[4]);
         lab6.setText(labels[5]);
     }
-    
+
 //Guarda en txt
     @FXML
     private void saveGame(ActionEvent event) {
         try {
-            String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
-            String fileRecord = "C:\\Users\\melan\\Pictures\\Screenshots\\Record.txt"; // Ruta y nombre del archivo personalizado
+            String playerNameValue = playerName.getText();
+            String fileRecord = "C:\\Users\\melan\\Pictures\\Screenshots\\Record.txt"; // Ruta 
             FileWriter writers = new FileWriter(fileRecord, true);
             BufferedWriter bufferedWriters = new BufferedWriter(writers);
             bufferedWriters.write("Nombre del Jugador: " + playerNameValue);
@@ -439,11 +438,11 @@ public class GameController implements Initializable {
             bufferedWriters.write("Tiempo de la Partida: " + gameTime.getText());
             bufferedWriters.newLine();
             bufferedWriters.close();
-            
-            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
+
+            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta 
             File file = new File(filePath);
             FileWriter writer = new FileWriter(file);
-            BufferedWriter bufferedWriter =  new BufferedWriter(writer);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
             bufferedWriter.write("Nombre del Jugador: " + playerNameValue);
             bufferedWriter.newLine();
             bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
@@ -458,6 +457,7 @@ public class GameController implements Initializable {
                 bufferedWriter.write(movimiento);
                 bufferedWriter.newLine();
             }
+
             bufferedWriter.close();
             System.out.println("Información y movimientos guardados en " + filePath);
         } catch (IOException e) {
@@ -509,8 +509,8 @@ public class GameController implements Initializable {
 
     //cambie
     void loadGameMovesFromFile(String filePath) {
-        int lineCount = 0; // Variable para rastrear la línea actual
-        gameMoves.clear(); // Limpia la lista de movimientos existente
+        int lineCount = 0; 
+        gameMoves.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -544,7 +544,7 @@ public class GameController implements Initializable {
         }
     }
 
-    //nuevo
+    //ordenar el cubo con los movimientos para continuar
     @FXML
     public void continueCubeSolve() {
         for (int i = 0; i < gameMoves.size(); i++) {
@@ -594,8 +594,8 @@ public class GameController implements Initializable {
             }
         }
     }
-//Gira izquieda
 
+    //Gira izquieda
     public void chageLSave(int x) {
         paneCube.edgesLeftRight(x, 0);
         //actualiza
@@ -607,8 +607,8 @@ public class GameController implements Initializable {
         }
 
     }
-//Gira derecha
-
+    
+    //Gira derecha
     public void chageRSave(int x) {
         paneCube.edgesLeftRight(x, 1);
         //actualiza
@@ -620,8 +620,8 @@ public class GameController implements Initializable {
         }
 
     }
-//Gira arriba
-
+    
+    //Gira arriba
     public void chageTSave(int x) {
         paneCube.edgesTopBottom(x, 1);
         //actualiza
@@ -631,10 +631,9 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
-
     }
-//Gira abajo
 
+    //Gira abajo
     public void chageBSave(int x) {
         paneCube.edgesTopBottom(x, 0);
         //actualiza
@@ -644,10 +643,9 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
-
     }
-//Gira en sentido horario
 
+    //Gira en sentido horario
     public void chageH() {
         paneCube.rotation(1);
         auxFace = paneCube.updateFace();
@@ -656,7 +654,6 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
-
     }
 
     //Gira en sentido antihorario
@@ -673,22 +670,19 @@ public class GameController implements Initializable {
 
     @FXML
     private void exitMenu(ActionEvent event) {
-
         try {
-            // Cargar el FXML del menú
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/menu.fxml"));
             Parent root = loader.load();
             MenuController menuController = loader.getController();
 
-            // Cambiar la escena actual a la del menú
             Stage stage = new Stage();
             stage.setTitle("Juego del Cubo Rubik");
             stage.setScene(new Scene(root));
             stage.show();
 
-            //cerrar el menu
             Stage gameStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             gameStage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

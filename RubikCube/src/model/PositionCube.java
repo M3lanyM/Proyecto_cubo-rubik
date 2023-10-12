@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  *
- * @author Ashley Mendoza V
+ * @author amendoza, mmendoza, mjimenez, khernandez, jcastro
  */
 public class PositionCube {
     private Face front;
