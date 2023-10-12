@@ -61,7 +61,7 @@
                         <Insets left="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" graphicTextGap="7.0" layoutX="160.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exitMenu" prefHeight="39.0" prefWidth="93.0" styleClass="buttonExit" stylesheets="@../css/cubo.css" text="Salir" textFill="WHITE">
+                  <Button alignment="CENTER" graphicTextGap="7.0" layoutX="160.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exitMenu" prefHeight="39.0" prefWidth="93.0" styleClass="buttonExit" stylesheets="@../css/cubo.css" text="Menu" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Black" size="15.0" />
                      </font>

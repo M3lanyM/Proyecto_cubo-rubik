@@ -114,7 +114,7 @@ public class GameController implements Initializable {
     private PositionCube positionCube;
     Face auxFace;
     private int sides;
-    
+
     private int movementCount = 0;
     private List<String> gameMoves = new ArrayList<>();
     int firtsList = 0;
@@ -123,7 +123,7 @@ public class GameController implements Initializable {
 
     @FXML
     private TextField gameTime;
-    
+
     private int seconds = 0;
     private int minutes = 0;
     private Timeline timeline;
@@ -134,6 +134,7 @@ public class GameController implements Initializable {
         changeFaceCube();
         cuboMovement();
         //loadGameMovesFromFile("C:\\Users\\marti\\OneDrive\\Documents\\" + "martin" + ".txt");
+        //  loadGameMovesFromFile("C:\\Users\\marti\\OneDrive\\Documents\\" + "martin" + ".txt");
         Image icone1 = new Image(getClass().getResourceAsStream("/Images/leftArrow.png"));
         btnLeftBottom.setGraphic(new ImageView(icone1));
         Image icone2 = new Image(getClass().getResourceAsStream("/Images/rightArrow.png"));
@@ -148,7 +149,7 @@ public class GameController implements Initializable {
         gameMoves.add("Caras:" + 1);
         textColorPosition(Color.YELLOW);
     }
-    
+
     //nuevo
     public void startTimer() {
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
@@ -431,7 +432,9 @@ public class GameController implements Initializable {
                 bufferedWriter.write(movimiento);
                 bufferedWriter.newLine();
             }
-            bufferedWriter.close();
+            bufferedWriter.close(); // Cierra el archivo
+
+            // Puedes mostrar un mensaje de éxito o realizar otras acciones después de guardar los movimientos
             System.out.println("Información y movimientos guardados en " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
@@ -478,10 +481,12 @@ public class GameController implements Initializable {
             System.out.println("No hay movimientos.");
         }
     }
-//Carga del txt a la lista
-    private void loadGameMovesFromFile(String filePath) {
+    //cambie
+    void loadGameMovesFromFile(String filePath) {
         int lineCount = 0; // Variable para rastrear la línea actual
-        try ( BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        gameMoves.clear(); // Limpia la lista de movimientos existente
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (lineCount > 1) {
@@ -493,7 +498,35 @@ public class GameController implements Initializable {
             e.printStackTrace();
         }
     }
-//Cambia la cara
+
+    //nuevo
+    @FXML
+    public void continueCubeSolve() {
+        for (int i = 0; i < gameMoves.size(); i++) {
+            String currentMove = gameMoves.get(i);
+            if (currentMove.startsWith("izquierda:")) {
+                int value = Integer.parseInt(currentMove.substring(10));
+                chageLSave(value);
+            } else if (currentMove.startsWith("Caras:")) {
+                int value = Integer.parseInt(currentMove.substring(6));
+                chageFacesSave(value);
+            } else if (currentMove.startsWith("derecha:")) {
+                int value = Integer.parseInt(currentMove.substring(8));
+                chageRSave(value);
+            } else if (currentMove.startsWith("arriba:")) {
+                int value = Integer.parseInt(currentMove.substring(7));
+                chageTSave(value);
+            } else if (currentMove.startsWith("abajo:")) {
+                int value = Integer.parseInt(currentMove.substring(6));
+                chageBSave(value);
+            } else if (currentMove.startsWith("antiHora")) {
+                chageAH();
+            } else if (currentMove.startsWith("Horario")) {
+                chageH();
+            }
+        }
+    }
+    
     public void chageFacesSave(int x) {
         if (x == 0) {
             paneCube.whiteFace();

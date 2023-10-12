@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -57,7 +58,7 @@ public class MenuController implements Initializable {
 
                 // Asignar el nombre del jugador al controlador del cubo
                 gameController.setPlayerName(playerName);
-                
+
                 // Inicia el cronómetro
                 gameController.startTimer();
 
@@ -84,8 +85,60 @@ public class MenuController implements Initializable {
         }
     }
 
+    //nuevo
     @FXML
     private void continueGame(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Cargar partida");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Por favor, ingrese su nombre:");
+
+        Optional<String> result = dialog.showAndWait();
+
+        if (result.isPresent() && !result.get().isEmpty()) {
+            String playerName = result.get();
+            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName + ".txt"; // Ruta y nombre del archivo personalizado
+
+            File file = new File(filePath);
+
+            if (file.exists()) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game.fxml"));
+                    Parent root = loader.load();
+
+                    GameController gameController = loader.getController();
+                    gameController.setPlayerName(playerName);
+                    gameController.loadGameMovesFromFile(filePath); // Cargar los movimientos desde el archivo
+                    gameController.continueCubeSolve(); // Aplicar los movimientos guardados
+
+                    
+                    // Inicia el cronómetro
+                    gameController.startTimer();
+
+                    Stage stage = new Stage();
+                    stage.setTitle("Juego del Cubo Rubik");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                    Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    menuStage.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Advertencia");
+                alert.setHeaderText(null);
+                alert.setContentText("No se encontró una partida guardada con ese nombre.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText(null);
+            alert.setContentText("El campo de nombre no puede estar vacío. Por favor, ingrese su nombre.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
