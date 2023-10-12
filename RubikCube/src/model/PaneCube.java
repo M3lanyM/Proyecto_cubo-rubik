@@ -44,7 +44,7 @@ public class PaneCube extends GridPane {
 
         return positions.getFront();
     }
-
+//Cargamos las caras segun el orden de color
     public void whiteFace() {
         positions.setFront(faces[0]);
         positions.setBack(faces[1]);
@@ -99,7 +99,7 @@ public class PaneCube extends GridPane {
         positions.setTop(faces[0]);
         positions.setBottom(faces[1]);
     }
-
+//retorna la cara segun el color
     public Face getFace(Color color) {
         if (color == Color.WHITE) {
             return faces[0];
@@ -117,7 +117,7 @@ public class PaneCube extends GridPane {
             return null;
         }
     }
-
+//gira la fila izquierda
     public void turnLeftRow(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[i][row].getFill();
@@ -129,7 +129,7 @@ public class PaneCube extends GridPane {
             positions.getRight().setColor((Color) color3, i, row);
         }
     }
-
+//gira la fila derecha
     public void turnRightRow(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[i][row].getFill();
@@ -141,7 +141,7 @@ public class PaneCube extends GridPane {
             positions.getLeft().setColor((Color) color3, i, row);
         }
     }
-
+//gira la columna arriba
     public void turnTopColum(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[row][i].getFill();
@@ -153,7 +153,7 @@ public class PaneCube extends GridPane {
             positions.getBottom().setColor((Color) color3, row, i);
         }
     }
-
+//gira la columna abajo
     public void turnBottomColum(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[row][i].getFill();
@@ -165,7 +165,7 @@ public class PaneCube extends GridPane {
             positions.getTop().setColor((Color) color3, row, i);
         }
     }
-
+//gira en antihorario
     public void turnFaceAntiSchedule(Face face) {
         //Mueve color esquinas
         color = (Color) face.rectangles[0][0].getFill();
@@ -189,7 +189,7 @@ public class PaneCube extends GridPane {
         face.setColor(color3, 2, 1);
         face.setColor(color4, 1, 0);
     }
-
+//gira en horario
     public void turnFaceSchedule(Face face) {
         //Mueve color esquinas
         color = (Color) face.rectangles[0][0].getFill();
@@ -213,7 +213,7 @@ public class PaneCube extends GridPane {
         face.setColor(color3, 1, 2);
         face.setColor(color4, 0, 1);
     }
-
+//cambia las esquina
     public void swapCorners(Face face, int colum) {
         if (colum == 0) {
             color = (Color) face.rectangles[0][0].getFill();
@@ -232,7 +232,7 @@ public class PaneCube extends GridPane {
 
         }
     }
-
+//gira la esquina antiorario
     public void rotationCornersFaceAntiSchedule() {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getBottom().rectangles[i][0].getFill();
@@ -246,7 +246,7 @@ public class PaneCube extends GridPane {
 
         }
     }
-
+//gira las esquinas en horario
     public void rotationCornersFaceSchedule() {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getBottom().rectangles[i][0].getFill();
@@ -260,7 +260,7 @@ public class PaneCube extends GridPane {
 
         }
     }
-
+//rota fila derecha o izquierda
     public void edgesLeftRight(int sides, int line) {
         if (line == 0) {
             if (sides == 0) {
@@ -291,7 +291,7 @@ public class PaneCube extends GridPane {
 
         }
     }
-
+//rota columna arriba o abajo
     public void edgesTopBottom(int sides, int line) {
         if (line == 0) {
             if (sides == 3) {
@@ -322,7 +322,7 @@ public class PaneCube extends GridPane {
             }
         }
     }
-
+//rotar cara
     public void rotation(int op) {
         if (op == 0) {
             turnFaceAntiSchedule(positions.getFront());
@@ -336,9 +336,4 @@ public class PaneCube extends GridPane {
             rotationCornersFaceSchedule();
         }
     }
-
-    public void mixCube() {
-        
-    }
-
 }

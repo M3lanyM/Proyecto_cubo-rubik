@@ -331,6 +331,7 @@ public class GameController implements Initializable {
         numberMoves.setText(Integer.toString(movementCount));
     }
 //mezclar
+
     @FXML
     private void btnMix(ActionEvent event) {
         //Se debe de agregar una lista para guardar los movimientos creados
@@ -359,7 +360,7 @@ public class GameController implements Initializable {
             } else if (number == 5) {
                 paneCube.edgesLeftRight(2, 1);
                 gameMoves.add("derecha:" + 2);
-                //-----------------
+//////////////////////////////////////////////////////////////////////////////
             } else if (number == 6) {
                 paneCube.edgesTopBottom(3, 1);
                 gameMoves.add("arriba:" + 3);
@@ -378,7 +379,7 @@ public class GameController implements Initializable {
             } else if (number == 11) {
                 paneCube.edgesTopBottom(5, 0);
                 gameMoves.add("abajo:" + 5);
-                //----------
+///////////////////////////////////////////////////////////////////////////////
             } else if (number == 12) {
                 paneCube.rotation(0);
                 gameMoves.add("antiHora:");
@@ -397,6 +398,7 @@ public class GameController implements Initializable {
         numberMoves.setText(Integer.toString(movementCount));
     }
 //Pone los textos de posiciones
+
     void textColorPosition(Color color) {
         Map<Color, String[]> colorMappings = new HashMap<>();
         colorMappings.put(Color.WHITE, new String[]{"Atras", "Frontal", "Izquierda", "Derecha", "Abajo", "Arriba"});
@@ -415,6 +417,7 @@ public class GameController implements Initializable {
         lab6.setText(labels[5]);
     }
 //Guarda en txt
+
     @FXML
     private void saveGame(ActionEvent event) {
         try {
@@ -432,15 +435,14 @@ public class GameController implements Initializable {
                 bufferedWriter.write(movimiento);
                 bufferedWriter.newLine();
             }
-            bufferedWriter.close(); // Cierra el archivo
-
-            // Puedes mostrar un mensaje de éxito o realizar otras acciones después de guardar los movimientos
+            bufferedWriter.close();
             System.out.println("Información y movimientos guardados en " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 //Resulve el cubo
+
     @FXML
     private void cubeSolve(ActionEvent event) {
         int cont = 0;
@@ -481,12 +483,13 @@ public class GameController implements Initializable {
             System.out.println("No hay movimientos.");
         }
     }
+
     //cambie
     void loadGameMovesFromFile(String filePath) {
         int lineCount = 0; // Variable para rastrear la línea actual
         gameMoves.clear(); // Limpia la lista de movimientos existente
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (lineCount > 1) {
@@ -526,7 +529,8 @@ public class GameController implements Initializable {
             }
         }
     }
-    
+    //cambia las posiciones  
+
     public void chageFacesSave(int x) {
         if (x == 0) {
             paneCube.whiteFace();

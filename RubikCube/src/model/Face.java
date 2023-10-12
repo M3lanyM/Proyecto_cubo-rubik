@@ -44,8 +44,7 @@ public class Face extends GridPane{
     public Rectangle[][] getMatrix() {
         return rectangles;
     }
-
-    
+//enviar un colo a una cara
     public void setColor(Color color, int i, int j) {
         if ((i < 0 || i >= 3) || (j < 0 || j >= 3)) {
             throw new IllegalArgumentException("Posición no existente en la matriz");

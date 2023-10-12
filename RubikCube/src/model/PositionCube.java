@@ -17,7 +17,7 @@ public class PositionCube {
     private Face left;
     private Face top;
     private Face bottom;
-
+//metodos para retonor una cara
     public Face getFront() {
         return front;
     }
@@ -41,7 +41,7 @@ public class PositionCube {
     public Face getBottom() {
         return bottom;
     }
-
+//metdos que envian una cara
     public void setFront(Face face) {
         GridPane.setConstraints(face, 1, 1); 
         front = face;
