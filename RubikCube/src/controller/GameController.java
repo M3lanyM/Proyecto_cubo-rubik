@@ -427,7 +427,20 @@ public class GameController implements Initializable {
     private void saveGame(ActionEvent event) {
         try {
             String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
-            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
+            String fileRecord = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\Record.txt"; // Ruta y nombre del archivo personalizado
+            FileWriter writers = new FileWriter(fileRecord, true);
+            BufferedWriter bufferedWriters = new BufferedWriter(writers);
+            bufferedWriters.write("Nombre del Jugador: " + playerNameValue);
+            bufferedWriters.newLine();
+            bufferedWriters.write("Número de Movimientos: " + gameMoves.size());
+            bufferedWriters.newLine();
+
+            // Guarda el tiempo de la partida
+            bufferedWriters.write("Tiempo de la Partida: " + gameTime.getText());
+            bufferedWriters.newLine();
+            bufferedWriters.close();
+            
+            String filePath = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
             File file = new File(filePath);
             FileWriter writer = new FileWriter(file);
             BufferedWriter bufferedWriter =  new BufferedWriter(writer);

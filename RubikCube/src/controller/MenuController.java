@@ -97,7 +97,7 @@ public class MenuController implements Initializable {
 
         if (result.isPresent() && !result.get().isEmpty()) {
             String playerName = result.get();
-            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName + ".txt"; // Ruta y nombre del archivo personalizado
+            String filePath = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\" + playerName + ".txt"; // Ruta y nombre del archivo personalizado
 
             File file = new File(filePath);
 
@@ -160,6 +160,11 @@ public class MenuController implements Initializable {
                 + "6. ¡Diviértete! Jugar con el Cubo Rubik es un desafío divertido y satisfactorio.");
 
         alert.showAndWait();
+    }
+
+    @FXML
+    private void Records(ActionEvent event) {
+        String fileRecord = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\Record.txt";
     }
 
 }
