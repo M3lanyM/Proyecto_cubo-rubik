@@ -4,11 +4,16 @@
  */
 package controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +23,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -97,7 +104,7 @@ public class MenuController implements Initializable {
 
         if (result.isPresent() && !result.get().isEmpty()) {
             String playerName = result.get();
-            String filePath = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\" + playerName + ".txt"; // Ruta y nombre del archivo personalizado
+            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName + ".txt"; // Ruta y nombre del archivo personalizado
 
             File file = new File(filePath);
 
@@ -110,9 +117,9 @@ public class MenuController implements Initializable {
                     gameController.setPlayerName(playerName);
                     gameController.loadGameMovesFromFile(filePath); // Cargar los movimientos desde el archivo
                     gameController.continueCubeSolve(); // Aplicar los movimientos guardados
-        
+
                     // numero de movimientos
-                    gameController.setMovementCount(gameController.getGameMoves().size()- 1);
+                    gameController.setMovementCount(gameController.getGameMoves().size() - 1);
 
                     // Cargar el tiempo de la partida y actualizar el cronómetro
                     gameController.loadGameTimeFromFile(filePath);
@@ -124,7 +131,7 @@ public class MenuController implements Initializable {
                     stage.setTitle("Juego del Cubo Rubik");
                     stage.setScene(new Scene(root));
                     stage.show();
-                    
+
                     Stage menuStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     menuStage.close();
                 } catch (IOException e) {
@@ -164,7 +171,56 @@ public class MenuController implements Initializable {
 
     @FXML
     private void Records(ActionEvent event) {
-        String fileRecord = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\Record.txt";
-    }
+        try {
+            String fileRecord = "C:\\Users\\melan\\Pictures\\Screenshots\\Record.txt";
+            File recordsFile = new File(fileRecord);
 
+            if (!recordsFile.exists()) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Records");
+                alert.setHeaderText("No se encontraron records");
+                alert.setContentText("Aún no se han guardado records");
+                alert.showAndWait();
+                return;
+            }
+
+            List<String> records = new ArrayList<>();
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileRecord))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    records.add(line);
+                }
+            }
+
+            String lowestPlayer = null;
+            int lowestMovements = Integer.MAX_VALUE;
+            String lowestTime = null;
+
+            for (int i = 0; i < records.size(); i += 3) {
+                String playerName = records.get(i);
+                int movements = Integer.parseInt(records.get(i + 1).replace("Número de Movimientos: ", ""));
+                String time = records.get(i + 2).replace("Tiempo de la Partida: ", "");
+
+                if (movements < lowestMovements) {
+                    lowestPlayer = playerName;
+                    lowestMovements = movements;
+                    lowestTime = time;
+                }
+            }
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Records");
+            alert.setHeaderText("Récord del movimiento y tiempo más bajos:");
+            alert.setContentText(lowestPlayer + "\nMovimientos: " + lowestMovements + "\nTiempo: " + lowestTime);
+            alert.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Se produjo un error al leer los records.");
+            alert.showAndWait();
+        }
+    }
 }

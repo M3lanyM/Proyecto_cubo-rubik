@@ -421,13 +421,13 @@ public class GameController implements Initializable {
         lab5.setText(labels[4]);
         lab6.setText(labels[5]);
     }
+    
 //Guarda en txt
-
     @FXML
     private void saveGame(ActionEvent event) {
         try {
             String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
-            String fileRecord = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\Record.txt"; // Ruta y nombre del archivo personalizado
+            String fileRecord = "C:\\Users\\melan\\Pictures\\Screenshots\\Record.txt"; // Ruta y nombre del archivo personalizado
             FileWriter writers = new FileWriter(fileRecord, true);
             BufferedWriter bufferedWriters = new BufferedWriter(writers);
             bufferedWriters.write("Nombre del Jugador: " + playerNameValue);
@@ -440,7 +440,7 @@ public class GameController implements Initializable {
             bufferedWriters.newLine();
             bufferedWriters.close();
             
-            String filePath = "C:\\Users\\Usuario\\Desktop\\Universidad\\Estructura de datos 2023\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
+            String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
             File file = new File(filePath);
             FileWriter writer = new FileWriter(file);
             BufferedWriter bufferedWriter =  new BufferedWriter(writer);
