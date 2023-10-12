@@ -119,7 +119,7 @@ public class GameController implements Initializable {
     private List<String> gameMoves = new ArrayList<>();
     int firtsList = 0;
     int endList;
-
+    int auxPos = 1;
 
     @FXML
     private TextField gameTime;
@@ -133,7 +133,7 @@ public class GameController implements Initializable {
         initilizeFaceCube();
         changeFaceCube();
         cuboMovement();
-        loadGameMovesFromFile("C:\\Users\\marti\\OneDrive\\Documents\\" + "martin" + ".txt");
+        //loadGameMovesFromFile("C:\\Users\\marti\\OneDrive\\Documents\\" + "martin" + ".txt");
         Image icone1 = new Image(getClass().getResourceAsStream("/Images/leftArrow.png"));
         btnLeftBottom.setGraphic(new ImageView(icone1));
         Image icone2 = new Image(getClass().getResourceAsStream("/Images/rightArrow.png"));
@@ -145,6 +145,7 @@ public class GameController implements Initializable {
         paneCube = new PaneCube();
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
+        gameMoves.add("Caras:" + 1);
         textColorPosition(Color.YELLOW);
     }
     
@@ -208,7 +209,9 @@ public class GameController implements Initializable {
                 if (action != null) {
                     action.run();
                     int newIndex = Arrays.asList(btnWhite, btnYellow, btnBlue, btnGreen, btnOrange, btnRed).indexOf(newValue);
-                    gameMoves.add("Caras:" + newIndex);
+                    int oldIndex = Arrays.asList(btnWhite, btnYellow, btnBlue, btnGreen, btnOrange, btnRed).indexOf(oldValue);
+                    auxPos = oldIndex;
+                    gameMoves.add("Caras:" + oldIndex);
                     for (int i = 0; i < 3; i++) {
                         for (int j = 0; j < 3; j++) {
                             face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
@@ -326,81 +329,61 @@ public class GameController implements Initializable {
         movementCount++;
         numberMoves.setText(Integer.toString(movementCount));
     }
-
+//mezclar
     @FXML
     private void btnMix(ActionEvent event) {
         //Se debe de agregar una lista para guardar los movimientos creados
         System.out.println("Mezclado");
         Random generator = new Random();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 15; i++) {
             int number = generator.nextInt(5);
             int aux = number;
-
-            if (number == 0) {
-                paneCube.whiteFace();
-                gameMoves.add("mixCara: 0");
-            } else if (number == 1) {
-                paneCube.yellowFace();
-                gameMoves.add("mixCara: 1");
-            } else if (number == 2) {
-                paneCube.blueFace();
-                gameMoves.add("mixCara: 2");
-            } else if (number == 3) {
-                paneCube.greenFace();
-                gameMoves.add("mixCara: 3");
-            } else if (number == 4) {
-                paneCube.orangeFace();
-                gameMoves.add("mixCara: 4");
-            } else if (number == 5) {
-                paneCube.redFace();
-                gameMoves.add("mixCara: 5");
-            }
 
             number = generator.nextInt(14);
             if (number == 0) {
                 paneCube.edgesLeftRight(0, 0);
                 gameMoves.add("izquierda:" + 0);
             } else if (number == 1) {
-                paneCube.edgesLeftRight(0, 1);
+                paneCube.edgesLeftRight(1, 0);
                 gameMoves.add("izquierda:" + 1);
             } else if (number == 2) {
-                paneCube.edgesLeftRight(0, 2);
+                paneCube.edgesLeftRight(2, 0);
                 gameMoves.add("izquierda:" + 2);
             } else if (number == 3) {
-                paneCube.edgesLeftRight(2, 0);
+                paneCube.edgesLeftRight(0, 1);
                 gameMoves.add("derecha:" + 0);
             } else if (number == 4) {
-                paneCube.edgesLeftRight(2, 1);
+                paneCube.edgesLeftRight(1, 1);
                 gameMoves.add("derecha:" + 1);
             } else if (number == 5) {
-                paneCube.edgesLeftRight(2, 2);
+                paneCube.edgesLeftRight(2, 1);
                 gameMoves.add("derecha:" + 2);
                 //-----------------
             } else if (number == 6) {
-                paneCube.edgesTopBottom(0, 0);
-                gameMoves.add("arriba:" + 0);
+                paneCube.edgesTopBottom(3, 1);
+                gameMoves.add("arriba:" + 3);
             } else if (number == 7) {
-                paneCube.edgesTopBottom(0, 1);
-                gameMoves.add("arriba:" + 1);
+                paneCube.edgesTopBottom(4, 1);
+                gameMoves.add("arriba:" + 4);
             } else if (number == 8) {
-                paneCube.edgesTopBottom(0, 2);
-                gameMoves.add("arriba:" + 2);
+                paneCube.edgesTopBottom(5, 1);
+                gameMoves.add("arriba:" + 5);
             } else if (number == 9) {
-                paneCube.edgesTopBottom(2, 0);
-                gameMoves.add("abajo:" + 0);
+                paneCube.edgesTopBottom(3, 0);
+                gameMoves.add("abajo:" + 3);
             } else if (number == 10) {
-                paneCube.edgesTopBottom(2, 1);
-                gameMoves.add("abajo:" + 1);
+                paneCube.edgesTopBottom(4, 0);
+                gameMoves.add("abajo:" + 4);
             } else if (number == 11) {
-                paneCube.edgesTopBottom(2, 2);
-                gameMoves.add("abajo:" + 2);
+                paneCube.edgesTopBottom(5, 0);
+                gameMoves.add("abajo:" + 5);
                 //----------
             } else if (number == 12) {
                 paneCube.rotation(0);
-                gameMoves.add("rotar:" + 0);
+                gameMoves.add("antiHora:");
             } else if (number == 13) {
                 paneCube.rotation(1);
-                gameMoves.add("rotar:" + 1);
+                gameMoves.add("Horario");
             }
         }
         auxFace = paneCube.updateFace();
@@ -412,7 +395,7 @@ public class GameController implements Initializable {
         movementCount++;
         numberMoves.setText(Integer.toString(movementCount));
     }
-
+//Pone los textos de posiciones
     void textColorPosition(Color color) {
         Map<Color, String[]> colorMappings = new HashMap<>();
         colorMappings.put(Color.WHITE, new String[]{"Atras", "Frontal", "Izquierda", "Derecha", "Abajo", "Arriba"});
@@ -430,80 +413,72 @@ public class GameController implements Initializable {
         lab5.setText(labels[4]);
         lab6.setText(labels[5]);
     }
-
+//Guarda en txt
     @FXML
     private void saveGame(ActionEvent event) {
         try {
             String playerNameValue = playerName.getText(); // Obtiene el valor del campo de texto playerName
-
             String filePath = "C:\\Users\\melan\\Pictures\\Screenshots\\" + playerName.getText() + ".txt"; // Ruta y nombre del archivo personalizado
             File file = new File(filePath);
             FileWriter writer = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
-
-            // Guarda el nombre del jugador y el número de movimientos al principio del archivo
             bufferedWriter.write("Nombre del Jugador: " + playerNameValue);
-            bufferedWriter.newLine(); // Agrega una nueva línea después del nombre del jugador
+            bufferedWriter.newLine();
             bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
-            bufferedWriter.newLine(); // Agrega una nueva línea después del número de movimientos
-
+            bufferedWriter.newLine();
             // Recorre la lista de movimientos y escribe cada movimiento en el archivo
             for (String movimiento : gameMoves) {
                 bufferedWriter.write(movimiento);
-                bufferedWriter.newLine(); // Agrega una nueva línea después de cada movimiento
+                bufferedWriter.newLine();
             }
-
-            bufferedWriter.close(); // Cierra el archivo
-
-            // Puedes mostrar un mensaje de éxito o realizar otras acciones después de guardar los movimientos
+            bufferedWriter.close();
             System.out.println("Información y movimientos guardados en " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
-            // Manejo de errores en caso de que no se pueda guardar el archivo
         }
     }
-
+//Resulve el cubo
     @FXML
     private void cubeSolve(ActionEvent event) {
-        //realiza movimiento segun el txt
-        if (firtsList < gameMoves.size()) {
-            String currentMove = gameMoves.get(firtsList);
-            if (currentMove.startsWith("izquierda:")) {
-                // Es un movimiento "izquierda:X"
-                int value = Integer.parseInt(currentMove.substring(10));
-                // Realiza la acción relacionada con "izquierda:X", por ejemplo:
-                chageLSave(value);
-            } else if (currentMove.startsWith("Caras:")) {
-                // Es un movimiento "Caras:X,Y"
-                int value = Integer.parseInt(currentMove.substring(6));
-                // Realiza la acción relacionada con "Caras:X,Y", por ejemplo:
-                chageFacesSave(value);
-            } else if (currentMove.startsWith("derecha:")) {
-                // Es un movimiento "izquierda:X"
-                int value = Integer.parseInt(currentMove.substring(8));
-                // Realiza la acción relacionada con "izquierda:X", por ejemplo:
-                chageRSave(value);
-            } else if (currentMove.startsWith("arriba:")) {
-                // Es un movimiento "Caras:X,Y"
-                int value = Integer.parseInt(currentMove.substring(7));
-                // Realiza la acción relacionada con "Caras:X,Y", por ejemplo:
-                chageTSave(value);
-            } else if (currentMove.startsWith("abajo:")) {
-                // Es un movimiento "izquierda:X"
-                int value = Integer.parseInt(currentMove.substring(6));
-                // Realiza la acción relacionada con "izquierda:X", por ejemplo:
-                chageBSave(value);
-            } else if (currentMove.startsWith("antiHora")) {
-                chageAH();
-            } else if (currentMove.startsWith("Horario")) {
-                chageH();
+        int cont = 0;
+        if (gameMoves.size() != 0) {
+            for (endList = gameMoves.size() - 1; endList >= 0; endList--) {
+                String currentMove = gameMoves.get(endList);
+                System.out.println(currentMove);
+                if (currentMove.startsWith("izquierda:")) {   // Es un movimiento "izquierda:X"
+                    int value = Integer.parseInt(currentMove.substring(10));
+                    cont++;
+                    chageRSave(value);
+                } else if (currentMove.startsWith("Caras:")) {
+                    int value = Integer.parseInt(currentMove.substring(6));
+                    cont++;
+                    chageFacesSave(value);
+                } else if (currentMove.startsWith("derecha:")) {
+                    int value = Integer.parseInt(currentMove.substring(8));
+                    cont++;
+                    chageLSave(value);
+                } else if (currentMove.startsWith("arriba:")) {
+                    int value = Integer.parseInt(currentMove.substring(7));
+                    cont++;
+                    chageBSave(value);
+                } else if (currentMove.startsWith("abajo:")) {
+                    int value = Integer.parseInt(currentMove.substring(6));
+                    cont++;
+                    chageTSave(value);
+                } else if (currentMove.startsWith("antiHora")) {
+                    cont++;
+                    chageH();
+                } else if (currentMove.startsWith("Horario")) {
+                    cont++;
+                    chageAH();
+                }
             }
-            firtsList++;  // Avanza al siguiente movimiento
+            System.out.println("cont:" + cont);
         } else {
-            System.out.println("Fin de los movimientos.");
+            System.out.println("No hay movimientos.");
         }
     }
-
+//Carga del txt a la lista
     private void loadGameMovesFromFile(String filePath) {
         int lineCount = 0; // Variable para rastrear la línea actual
         try ( BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -518,7 +493,7 @@ public class GameController implements Initializable {
             e.printStackTrace();
         }
     }
-
+//Cambia la cara
     public void chageFacesSave(int x) {
         if (x == 0) {
             paneCube.whiteFace();
@@ -540,6 +515,7 @@ public class GameController implements Initializable {
             }
         }
     }
+//Gira izquieda
 
     public void chageLSave(int x) {
         paneCube.edgesLeftRight(x, 0);
@@ -550,7 +526,9 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+
     }
+//Gira derecha
 
     public void chageRSave(int x) {
         paneCube.edgesLeftRight(x, 1);
@@ -561,7 +539,9 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+
     }
+//Gira arriba
 
     public void chageTSave(int x) {
         paneCube.edgesTopBottom(x, 1);
@@ -572,7 +552,9 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+
     }
+//Gira abajo
 
     public void chageBSave(int x) {
         paneCube.edgesTopBottom(x, 0);
@@ -583,7 +565,9 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+
     }
+//Gira en sentido horario
 
     public void chageH() {
         paneCube.rotation(1);
@@ -593,8 +577,10 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+
     }
 
+    //Gira en sentido antihorario
     public void chageAH() {
         paneCube.rotation(0);
         auxFace = paneCube.updateFace();
@@ -603,11 +589,12 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+
     }
 
     @FXML
     private void exitMenu(ActionEvent event) {
-        
+
         try {
             // Cargar el FXML del menú
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/menu.fxml"));
@@ -626,7 +613,6 @@ public class GameController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
     }
 
 }
