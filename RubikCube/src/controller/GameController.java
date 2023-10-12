@@ -23,7 +23,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -37,6 +41,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import model.Face;
 import model.PaneCube;
 import model.PositionCube;
@@ -222,7 +227,6 @@ public class GameController implements Initializable {
         });
     }
 
-    @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
     }
@@ -571,5 +575,29 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+    }
+
+    @FXML
+    private void exitMenu(ActionEvent event) {
+        
+        try {
+            // Cargar el FXML del menú
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/menu.fxml"));
+            Parent root = loader.load();
+            MenuController menuController = loader.getController();
+
+            // Cambiar la escena actual a la del menú
+            Stage stage = new Stage();
+            stage.setTitle("Juego del Cubo Rubik");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            //cerrar el menu
+            Stage gameStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            gameStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 }
