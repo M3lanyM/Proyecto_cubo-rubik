@@ -430,6 +430,11 @@ public class GameController implements Initializable {
             bufferedWriter.newLine();
             bufferedWriter.write("Número de Movimientos: " + gameMoves.size());
             bufferedWriter.newLine();
+
+            // Guarda el tiempo de la partida
+            bufferedWriter.write("Tiempo de la Partida: " + gameTime.getText());
+            bufferedWriter.newLine();
+
             // Recorre la lista de movimientos y escribe cada movimiento en el archivo
             for (String movimiento : gameMoves) {
                 bufferedWriter.write(movimiento);
@@ -441,8 +446,8 @@ public class GameController implements Initializable {
             e.printStackTrace();
         }
     }
-//Resulve el cubo
 
+//Resulve el cubo
     @FXML
     private void cubeSolve(ActionEvent event) {
         int cont = 0;
@@ -488,14 +493,33 @@ public class GameController implements Initializable {
     void loadGameMovesFromFile(String filePath) {
         int lineCount = 0; // Variable para rastrear la línea actual
         gameMoves.clear(); // Limpia la lista de movimientos existente
-
-        try ( BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (lineCount > 1) {
                     gameMoves.add(line);
                 }
                 lineCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadGameTimeFromFile(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Tiempo de la Partida: ")) {
+                    String[] parts = line.split(": ");
+                    if (parts.length == 2) {
+                        String[] timeParts = parts[1].split(":");
+                        if (timeParts.length == 2) {
+                            minutes = Integer.parseInt(timeParts[0]);
+                            seconds = Integer.parseInt(timeParts[1]);
+                        }
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -529,8 +553,8 @@ public class GameController implements Initializable {
             }
         }
     }
-    //cambia las posiciones  
 
+    //cambia las posiciones  
     public void chageFacesSave(int x) {
         if (x == 0) {
             paneCube.whiteFace();

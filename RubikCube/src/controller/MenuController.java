@@ -111,7 +111,9 @@ public class MenuController implements Initializable {
                     gameController.loadGameMovesFromFile(filePath); // Cargar los movimientos desde el archivo
                     gameController.continueCubeSolve(); // Aplicar los movimientos guardados
 
-                    
+                    // Cargar el tiempo de la partida y actualizar el cronómetro
+                    gameController.loadGameTimeFromFile(filePath);
+
                     // Inicia el cronómetro
                     gameController.startTimer();
 
