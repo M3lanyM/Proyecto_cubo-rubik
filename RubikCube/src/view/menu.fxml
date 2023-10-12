@@ -61,7 +61,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="225.0" style="-fx-background-color: #FCC419;" styleClass="btnMenu" stylesheets="@../css/cubo.css" text="Instrucciones del juego" textFill="WHITE">
+            <Button alignment="CENTER" graphicTextGap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#instructionMessage" prefHeight="35.0" prefWidth="225.0" style="-fx-background-color: #FCC419;" styleClass="btnMenu" stylesheets="@../css/cubo.css" text="Instrucciones del juego" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Black" size="15.0" />
                </font>

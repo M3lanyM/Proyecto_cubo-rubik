@@ -81,5 +81,21 @@ public class MenuController implements Initializable {
     @FXML
     private void continueGame(ActionEvent event) {
     }
+
+    @FXML
+    private void instructionMessage(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Instrucciones para Jugar con el Cubo Rubik");
+        alert.setHeaderText(null);
+        alert.setContentText("Instrucciones para jugar con el Cubo Rubik:\n\n"
+                + "1. Objetivo: El objetivo del juego es resolver el Cubo Rubik, de modo que cada cara del cubo tenga un solo color.\n"
+                + "2. Girar las caras: Utiliza los botones para cambiar los colores de las caras del cubo. Cada botón representa un color diferente.\n"
+                + "3. Girar verticalmente: Utiliza los botones de giro vertical para rotar las filas del cubo hacia arriba o abajo.\n"
+                + "4. Girar horizontalmente: Utiliza los botones de giro horizontal para rotar las columnas del cubo hacia la izquierda o la derecha.\n"
+                + "5. Resolución: Intenta resolver el cubo haciendo coincidir los colores en cada cara. Puede ser un desafío, ¡así que ten paciencia!\n"
+                + "6. ¡Diviértete! Jugar con el Cubo Rubik es un desafío divertido y satisfactorio.");
+
+        alert.showAndWait();
+    }
     
 }
