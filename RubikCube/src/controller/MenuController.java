@@ -57,6 +57,9 @@ public class MenuController implements Initializable {
 
                 // Asignar el nombre del jugador al controlador del cubo
                 gameController.setPlayerName(playerName);
+                
+                // Inicia el cronómetro
+                gameController.startTimer();
 
                 // Mostrar la vista del cubo en una nueva ventana
                 Stage stage = new Stage();

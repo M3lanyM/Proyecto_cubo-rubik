@@ -123,6 +123,10 @@ public class GameController implements Initializable {
 
     @FXML
     private TextField gameTime;
+    
+    private int seconds = 0;
+    private int minutes = 0;
+    private Timeline timeline;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,6 +146,23 @@ public class GameController implements Initializable {
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
         textColorPosition(Color.YELLOW);
+    }
+    
+    //nuevo
+    public void startTimer() {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void updateTimer() {
+        seconds++;
+        if (seconds == 60) {
+            seconds = 0;
+            minutes++;
+        }
+        String formattedTime = String.format("%02d:%02d", minutes, seconds);
+        gameTime.setText(formattedTime);
     }
 
     public void setPlayerName(String name) {
