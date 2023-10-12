@@ -29,13 +29,14 @@ public class PaneCube extends GridPane {
         faces[3] = new Face(Color.GREEN);
         faces[4] = new Face(Color.ORANGE);
         faces[5] = new Face(Color.RED);
+        inicializar();
     }
 
     private void inicializar() {
+
         for (int i = 0; i < 6; i++) {
             getChildren().add(faces[i]);
         }
-
         yellowFace();
     }
 
@@ -44,7 +45,6 @@ public class PaneCube extends GridPane {
         return positions.getFront();
     }
 
-    //Carga las caras del cubo en la pantalla al inicar
     public void whiteFace() {
         positions.setFront(faces[0]);
         positions.setBack(faces[1]);
@@ -118,129 +118,6 @@ public class PaneCube extends GridPane {
         }
     }
 
-    public void organize(int previous, int current) {
-        if (previous == 0) {//blanco
-            if (current == 1) {//amarillo
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 2) {//azul
-                turnFaceSchedule(positions.getBottom());
-                turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 3) {//verde
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 4) {//naranja
-                turnFaceAntiSchedule(positions.getRight());
-                turnFaceSchedule(positions.getLeft());
-            } else if (current == 5) {//rojo
-                turnFaceAntiSchedule(positions.getLeft());
-                turnFaceSchedule(positions.getRight());
-            }
-///////////////////////////////////////////////////////////////////////////////
-        } else if (previous == 1) {//amarillo
-            if (current == 0) {//blanco
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 2) {//azul
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 3) {//verde
-                turnFaceSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 4) {//naranja
-                turnFaceAntiSchedule(positions.getRight());
-                turnFaceSchedule(positions.getLeft());
-            } else if (current == 5) {//rojo
-                turnFaceSchedule(positions.getRight());
-                turnFaceAntiSchedule(positions.getLeft());
-            }
-////////////////////////////////////////////////////////////////////////////////
-        } else if (previous == 2) {//azul
-            if (current == 0) {//blanco
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 1) {//amarillo
-                turnFaceSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 3) {//verde
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 4) {//naranja
-                turnFaceAntiSchedule(positions.getRight());
-                turnFaceSchedule(positions.getLeft());
-            } else if (current == 5) {//rojo
-                turnFaceSchedule(positions.getRight());
-                turnFaceAntiSchedule(positions.getLeft());
-            }
-////////////////////////////////////////////////////////////////////////////////
-        } else if (previous == 3) {//verde
-            if (current == 0) {//blanco
-                turnFaceSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 1) {//blanco
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 2) {//azul
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 4) {//naranja
-                turnFaceAntiSchedule(positions.getRight());
-                turnFaceSchedule(positions.getLeft());
-            } else if (current == 5) {//rojo
-                turnFaceSchedule(positions.getRight());
-                turnFaceAntiSchedule(positions.getLeft());
-            }
-////////////////////////////////////////////////////////////////////////////////
-        } else if (previous == 4) {//naranja
-            if (current == 0) {//blanco
-                turnFaceSchedule(positions.getLeft());
-                turnFaceAntiSchedule(positions.getRight());
-            } else if (current == 1) {//amarillo
-                turnFaceAntiSchedule(positions.getRight());
-                turnFaceSchedule(positions.getLeft());
-            } else if (current == 2) {//azul
-                turnFaceSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 5) {//rojo
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 3) {//verde
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-            }
-////////////////////////////////////////////////////////////////////////////////
-        } else if (previous == 5) {//rojo
-            if (current == 0) {//branco
-                turnFaceSchedule(positions.getLeft());
-                turnFaceAntiSchedule(positions.getRight());
-            } else if (current == 1) {//amarillo
-                turnFaceAntiSchedule(positions.getLeft());
-                turnFaceSchedule(positions.getRight());
-            } else if (current == 2) {//azul
-                turnFaceSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getBottom());
-            } else if (current == 4) {//naranja
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-                turnFaceSchedule(positions.getBottom());
-            } else if (current == 3) {//verde
-                turnFaceAntiSchedule(positions.getTop());
-                turnFaceSchedule(positions.getBottom());
-            }
-        }
-    }
-
     public void turnLeftRow(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[i][row].getFill();
@@ -265,26 +142,26 @@ public class PaneCube extends GridPane {
         }
     }
 
-    public void turnTopColum(int row, int auxBack) {
+    public void turnTopColum(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[row][i].getFill();
             positions.getFront().setColor((Color) positions.getBottom().rectangles[row][i].getFill(), row, i);
             color2 = (Color) positions.getTop().rectangles[row][i].getFill();
-            color3 = (Color) positions.getBack().rectangles[auxBack][i].getFill();
+            color3 = (Color) positions.getBack().rectangles[row][i].getFill();
             positions.getTop().setColor((Color) color, row, i);
-            positions.getBack().setColor((Color) color2, auxBack, i);
+            positions.getBack().setColor((Color) color2, row, i);
             positions.getBottom().setColor((Color) color3, row, i);
         }
     }
 
-    public void turnBottomColum(int row, int auxBack) {
+    public void turnBottomColum(int row) {
         for (int i = 0; i < 3; i++) {
             color = (Color) positions.getFront().rectangles[row][i].getFill();
             positions.getFront().setColor((Color) positions.getTop().rectangles[row][i].getFill(), row, i);
             color2 = (Color) positions.getBottom().rectangles[row][i].getFill();
-            color3 = (Color) positions.getBack().rectangles[auxBack][i].getFill();
+            color3 = (Color) positions.getBack().rectangles[row][i].getFill();
             positions.getBottom().setColor((Color) color, row, i);
-            positions.getBack().setColor((Color) color2, auxBack, i);
+            positions.getBack().setColor((Color) color2, row, i);
             positions.getTop().setColor((Color) color3, row, i);
         }
     }
@@ -390,7 +267,6 @@ public class PaneCube extends GridPane {
                 turnLeftRow(0);
                 turnFaceSchedule(positions.getTop());
             } else if (sides == 1) {
-
                 turnLeftRow(0);
                 turnLeftRow(2);
                 turnFaceAntiSchedule(positions.getBottom());
@@ -419,49 +295,30 @@ public class PaneCube extends GridPane {
     public void edgesTopBottom(int sides, int line) {
         if (line == 0) {
             if (sides == 3) {
-                turnTopColum(0, 2);
-                swapCorners(positions.getBottom(), 0);
+                turnTopColum(0);
                 turnFaceAntiSchedule(positions.getLeft());
-                swapCorners(positions.getBack(), 2);
             } else if (sides == 4) {
-                turnBottomColum(0, 2);
-                turnBottomColum(2, 0);
+                turnBottomColum(0);
+                turnBottomColum(2);
                 turnFaceSchedule(positions.getLeft());
                 turnFaceAntiSchedule(positions.getRight());
-                swapCorners(positions.getTop(), 0);
-                swapCorners(positions.getTop(), 2);
-                swapCorners(positions.getBack(), 0);
-                swapCorners(positions.getBack(), 2);
             } else if (sides == 5) {
-                turnTopColum(2, 0);
+                turnTopColum(2);
                 turnFaceSchedule(positions.getRight());
-                swapCorners(positions.getBottom(), 2);
-                swapCorners(positions.getBack(), 0);
-
             }
 
         } else {
             if (sides == 3) {
-                turnBottomColum(0, 2);
+                turnBottomColum(0);
                 turnFaceSchedule(positions.getLeft());
-                swapCorners(positions.getTop(), 0);
-                swapCorners(positions.getBack(), 2);
             } else if (sides == 4) {
-
-                turnTopColum(0, 2);
-                turnTopColum(2, 0);
+                turnTopColum(0);
+                turnTopColum(2);
                 turnFaceAntiSchedule(positions.getLeft());
                 turnFaceSchedule(positions.getRight());
-                swapCorners(positions.getBottom(), 0);
-                swapCorners(positions.getBottom(), 2);
-                swapCorners(positions.getBack(), 0);
-                swapCorners(positions.getBack(), 2);
             } else if (sides == 5) {
-                turnBottomColum(2, 0);
+                turnBottomColum(2);
                 turnFaceAntiSchedule(positions.getRight());
-                swapCorners(positions.getTop(), 2);
-                swapCorners(positions.getBack(), 0);
-
             }
         }
     }

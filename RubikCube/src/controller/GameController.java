@@ -4,8 +4,10 @@
  */
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -94,25 +96,28 @@ public class GameController implements Initializable {
     private Label lab5;
     @FXML
     private Label lab6;
+    @FXML
+    private TextField playerName;
+    @FXML
+    private TextField numberMoves;
 
     private Face face;
     private PaneCube paneCube;
     private PositionCube positionCube;
     Face auxFace;
     private int sides;
-    @FXML
-    private TextField playerName;
-    @FXML
-    private TextField numberMoves;
     private int movementCount = 0;
     private List<String> gameMoves = new ArrayList<>();
+    int firtsList = 0;
+    int endList;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initilizeFaceCube();
         changeFaceCube();
         cuboMovement();
-
+        loadGameMovesFromFile("C:\\Users\\marti\\OneDrive\\Documents\\" + "martin" + ".txt");
         Image icone1 = new Image(getClass().getResourceAsStream("/Images/leftArrow.png"));
         btnLeftBottom.setGraphic(new ImageView(icone1));
         Image icone2 = new Image(getClass().getResourceAsStream("/Images/rightArrow.png"));
@@ -124,6 +129,7 @@ public class GameController implements Initializable {
         paneCube = new PaneCube();
         positionCube = new PositionCube();
         faceCuboBackground.getChildren().add(face);
+        textColorPosition(Color.YELLOW);
     }
 
     public void setPlayerName(String name) {
@@ -168,16 +174,13 @@ public class GameController implements Initializable {
                 Runnable action = actionMap.get(newValue);
                 if (action != null) {
                     action.run();
-                    int oldIndex = Arrays.asList(btnWhite, btnYellow, btnBlue, btnGreen, btnOrange, btnRed).indexOf(oldValue);
                     int newIndex = Arrays.asList(btnWhite, btnYellow, btnBlue, btnGreen, btnOrange, btnRed).indexOf(newValue);
-                    paneCube.organize(oldIndex, newIndex);
-
+                    gameMoves.add("Caras:" + newIndex);
                     for (int i = 0; i < 3; i++) {
                         for (int j = 0; j < 3; j++) {
                             face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
                         }
                     }
-                    gameMoves.add("Caras:" + oldIndex + "," + newIndex);
                     movementCount++;
                     numberMoves.setText(Integer.toString(movementCount));
                 }
@@ -273,6 +276,7 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        gameMoves.add("antiHora");
         movementCount++;
         numberMoves.setText(Integer.toString(movementCount));
     }
@@ -286,6 +290,7 @@ public class GameController implements Initializable {
                 face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
             }
         }
+        gameMoves.add("Horario");
         movementCount++;
         numberMoves.setText(Integer.toString(movementCount));
     }
@@ -428,5 +433,143 @@ public class GameController implements Initializable {
 
     @FXML
     private void cubeSolve(ActionEvent event) {
+        //realiza movimiento segun el txt
+        if (firtsList < gameMoves.size()) {
+            String currentMove = gameMoves.get(firtsList);
+            if (currentMove.startsWith("izquierda:")) {
+                // Es un movimiento "izquierda:X"
+                int value = Integer.parseInt(currentMove.substring(10));
+                // Realiza la acción relacionada con "izquierda:X", por ejemplo:
+                chageLSave(value);
+            } else if (currentMove.startsWith("Caras:")) {
+                // Es un movimiento "Caras:X,Y"
+                int value = Integer.parseInt(currentMove.substring(6));
+                // Realiza la acción relacionada con "Caras:X,Y", por ejemplo:
+                chageFacesSave(value);
+            } else if (currentMove.startsWith("derecha:")) {
+                // Es un movimiento "izquierda:X"
+                int value = Integer.parseInt(currentMove.substring(8));
+                // Realiza la acción relacionada con "izquierda:X", por ejemplo:
+                chageRSave(value);
+            } else if (currentMove.startsWith("arriba:")) {
+                // Es un movimiento "Caras:X,Y"
+                int value = Integer.parseInt(currentMove.substring(7));
+                // Realiza la acción relacionada con "Caras:X,Y", por ejemplo:
+                chageTSave(value);
+            } else if (currentMove.startsWith("abajo:")) {
+                // Es un movimiento "izquierda:X"
+                int value = Integer.parseInt(currentMove.substring(6));
+                // Realiza la acción relacionada con "izquierda:X", por ejemplo:
+                chageBSave(value);
+            } else if (currentMove.startsWith("antiHora")) {
+                chageAH();
+            } else if (currentMove.startsWith("Horario")) {
+                chageH();
+            }
+            firtsList++;  // Avanza al siguiente movimiento
+        } else {
+            System.out.println("Fin de los movimientos.");
+        }
+    }
+
+    private void loadGameMovesFromFile(String filePath) {
+        int lineCount = 0; // Variable para rastrear la línea actual
+        try ( BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (lineCount > 1) {
+                    gameMoves.add(line);
+                }
+                lineCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void chageFacesSave(int x) {
+        if (x == 0) {
+            paneCube.whiteFace();
+        } else if (x == 1) {
+            paneCube.yellowFace();
+        } else if (x == 2) {
+            paneCube.blueFace();
+        } else if (x == 3) {
+            paneCube.greenFace();
+        } else if (x == 4) {
+            paneCube.orangeFace();
+        } else if (x == 5) {
+            paneCube.redFace();
+        }
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    public void chageLSave(int x) {
+        paneCube.edgesLeftRight(x, 0);
+        //actualiza
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    public void chageRSave(int x) {
+        paneCube.edgesLeftRight(x, 1);
+        //actualiza
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    public void chageTSave(int x) {
+        paneCube.edgesTopBottom(x, 1);
+        //actualiza
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    public void chageBSave(int x) {
+        paneCube.edgesTopBottom(x, 0);
+        //actualiza
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    public void chageH() {
+        paneCube.rotation(1);
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
+    }
+
+    public void chageAH() {
+        paneCube.rotation(0);
+        auxFace = paneCube.updateFace();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                face.setColor((Color) auxFace.getMatrix()[i][j].getFill(), i, j);
+            }
+        }
     }
 }
